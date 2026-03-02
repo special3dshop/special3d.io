@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support - Special 3D</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+    color: #111;
+}
+
+/* NAVBAR */
+.navbar {
+    background: black;
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+/* HERO */
+.hero-support {
+    background: #111;
+    color: white;
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.hero-support h1 {
+    margin: 0;
+    font-size: 42px;
+}
+
+.hero-support p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* CONTENT */
+.section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* CONTACT BOX */
+.contact-box {
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    margin-bottom: 40px;
+    transition: 0.3s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.email-highlight {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* FORM */
+form {
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    transition: 0.3s ease;
+}
+
+form:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+form button {
+    background: black;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #333;
+}
+
+.success-message {
+    display: none;
+    margin-top: 20px;
+    color: green;
+    font-weight: bold;
+}
+
+@media(max-width: 768px){
+    .section {
+        padding: 40px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div style="color:white; font-weight:bold;">Special 3D</div>
+    <div>
+        <a href="products.html">Products</a>
+        <a href="parts.html">Parts</a>
+        <a href="support.html">Support</a>
+        <a href="company.html">Company</a>
+    </div>
+</div>
+
+<div class="hero-support">
+    <h1>Support</h1>
+    <p>We're here to help. Reach out anytime.</p>
+</div>
+
+<div class="section">
+
+    <div class="contact-box">
+        <h2>Order & Direct Contact</h2>
+        <p>
+            If you did not receive your order or need urgent assistance,
+            please contact <strong>Kirill Pegankin</strong> or 
+            <strong>Adityesh Jena</strong> in person.
+        </p>
+
+        <p>
+            You can also send your request directly to:
+        </p>
+
+        <div class="email-highlight">
+            special3dshop@outlook.com
+        </div>
+    </div>
+
+    <h2>Send Us a Request</h2>
+
+    <form id="supportForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Describe your issue..." required></textarea>
+        <button type="submit">Submit Request</button>
+        <div class="success-message" id="successMessage">
+            Your request has been submitted.
+        </div>
+    </form>
+
+</div>
+
+<script>
+document.getElementById("supportForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("successMessage").style.display = "block";
+    this.reset();
+});
+</script>
+
+</body>
+</html>
