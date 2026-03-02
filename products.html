@@ -208,9 +208,9 @@ body {
 
 <script>
 const products = [
-    {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product page marshmallow with eyes - Edited.png"},
-    {name:"Marhmallow No Face", price:24.99, oldPrice:28.79, stock:true, image:"product2.jpg"},
-    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.jpg"},
+    {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product1.png"},
+    {name:"Marshmallow No Face", price:24.99, oldPrice:28.79, stock:true, image:"product2.png"},
+    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png"},
 ];
 
 const grid = document.getElementById("productsGrid");
@@ -223,7 +223,7 @@ const priceDisplay = document.getElementById("priceDisplay");
 const maxPrice = Math.max(...products.map(p=>p.price));
 priceRange.max = maxPrice;
 priceRange.value = maxPrice;
-priceDisplay.innerText = "$0 - $" + maxPrice;
+priceDisplay.innerText = "$0 - $" + maxPrice.toFixed(2);
 
 function renderProducts() {
     let filtered = [...products];
@@ -245,16 +245,16 @@ function renderProducts() {
     grid.innerHTML = "";
 
     filtered.forEach((p,index)=>{
-        const discount = p.oldPrice - p.price;
+        const discount = (p.oldPrice - p.price).toFixed(2);
         grid.innerHTML += `
         <div class="product-card" style="animation-delay:${index*0.05}s">
             <div class="sale-badge">- $${discount}</div>
             <div class="product-image">
-                <img src="${p.image}">
+                <img src="${p.image}" alt="${p.name}">
             </div>
             <h4>${p.name}</h4>
-            <div class="price">$${p.price}</div>
-            <div class="old-price">$${p.oldPrice}</div>
+            <div class="price">$${p.price.toFixed(2)}</div>
+            <div class="old-price">$${p.oldPrice.toFixed(2)}</div>
             <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
                 ${p.stock ? "In Stock" : "Out of Stock"}
             </div>
