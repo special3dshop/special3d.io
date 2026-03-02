@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company - Special 3D</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+    color: #111;
+}
+
+/* NAVBAR */
+.navbar {
+    background: black;
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+/* HERO IMAGE */
+.hero-company {
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.hero-company img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* CONTENT */
+.section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.section p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* MISSION BOX */
+.mission {
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    margin-top: 40px;
+    transition: 0.3s ease;
+}
+
+.mission:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+/* STATS */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    gap: 20px;
+}
+
+.stat-box {
+    background: white;
+    flex: 1;
+    padding: 40px;
+    border-radius: 14px;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.stat-box h3 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.stat-box p {
+    margin-top: 10px;
+    color: #666;
+}
+
+@media(max-width: 900px){
+    .stats {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div style="color:white; font-weight:bold;">Special 3D</div>
+    <div>
+        <a href="products.html">Products</a>
+        <a href="parts.html">Parts</a>
+        <a href="support.html">Support</a>
+        <a href="company.html">Company</a>
+    </div>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="hero-company">
+    <img src="company-hero.jpg" alt="Special 3D Company">
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="section">
+    <h2>About Special 3D</h2>
+    <p>
+        Special 3D is dedicated to designing and manufacturing high-quality 3D printing technology
+        that empowers creators, engineers, and innovators worldwide. Our focus is precision,
+        performance, and modern industrial design.
+    </p>
+
+    <div class="mission">
+        <h2>Our Mission</h2>
+        <p>
+            We believe 3D printing should be powerful, accessible, and inspiring.  
+            Our mission is to push boundaries in printing speed, material compatibility,
+            and hardware durability while keeping design clean and premium.
+        </p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-box">
+            <h3>10K+</h3>
+            <p>Products Sold</p>
+        </div>
+        <div class="stat-box">
+            <h3>25+</h3>
+            <p>Countries Reached</p>
+        </div>
+        <div class="stat-box">
+            <h3>99%</h3>
+            <p>Customer Satisfaction</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
