@@ -203,14 +203,11 @@ body {
 
 <div class="products-grid" id="productsGrid"></div>
 
-</div>
-</div>
-
 <script>
 const products = [
     {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product1.png"},
-    {name:"Marshmallow No Face", price:24.99, oldPrice:28.79, stock:true, image:"product1.png"},
-    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product1.png"},
+    {name:"Marshmallow No Face", price:24.99, oldPrice:28.79, stock:true, image:"product2.png"},
+    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png"},
 ];
 
 const grid = document.getElementById("productsGrid");
@@ -228,13 +225,16 @@ priceDisplay.innerText = "$0 - $" + maxPrice.toFixed(2);
 function renderProducts() {
     let filtered = [...products];
 
+    // Availability filter
     if (inStockBox.checked && !outStockBox.checked)
         filtered = filtered.filter(p=>p.stock);
     if (!inStockBox.checked && outStockBox.checked)
         filtered = filtered.filter(p=>!p.stock);
 
+    // Price filter
     filtered = filtered.filter(p=>p.price <= priceRange.value);
 
+    // Sorting
     if (sortSelect.value === "low")
         filtered.sort((a,b)=>a.price-b.price);
     if (sortSelect.value === "high")
@@ -245,12 +245,12 @@ function renderProducts() {
     grid.innerHTML = "";
 
     filtered.forEach((p,index)=>{
-        const discount = (p.oldPrice - p.price).toFixed(2);
+        const discount = +(p.oldPrice - p.price).toFixed(2); // round to 2 decimals
         grid.innerHTML += `
         <div class="product-card" style="animation-delay:${index*0.05}s">
-            <div class="sale-badge">- $${discount}</div>
+            ${discount > 0 ? `<div class="sale-badge">- $${discount}</div>` : ''}
             <div class="product-image">
-                <img src="${p.image}" alt="${p.name}">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='placeholder.png'">
             </div>
             <h4>${p.name}</h4>
             <div class="price">$${p.price.toFixed(2)}</div>
@@ -275,6 +275,6 @@ sortSelect.addEventListener("change", renderProducts);
 
 renderProducts();
 </script>
-
+    
 </body>
 </html>
