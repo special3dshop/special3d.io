@@ -9,9 +9,10 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    background: #f3f3f3;
 }
 
+/* NAVBAR */
 .navbar {
     background: black;
     padding: 15px 60px;
@@ -26,6 +27,7 @@ body {
     margin-left: 30px;
 }
 
+/* LAYOUT */
 .container {
     display: flex;
     padding: 40px 60px;
@@ -36,20 +38,8 @@ body {
     width: 250px;
     background: white;
     padding: 25px;
-    border-radius: 8px;
-}
-
-.sidebar h3 {
-    margin-top: 0;
-}
-
-.filter-group {
-    margin-bottom: 30px;
-}
-
-.filter-group label {
-    display: block;
-    margin-bottom: 8px;
+    border-radius: 10px;
+    height: fit-content;
 }
 
 .products-section {
@@ -58,33 +48,63 @@ body {
 
 .top-bar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: flex-end;
+    margin-bottom: 25px;
 }
 
+/* GRID */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
 }
 
+/* PRODUCT CARD */
 .product-card {
     background: white;
     padding: 20px;
-    border-radius: 10px;
-    transition: 0.3s;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.35s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s forwards;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
+/* SALE BADGE */
+.sale-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ff3c3c;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* STOCK BADGE */
+.stock {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.in-stock { color: green; }
+.out-stock { color: red; }
+
+/* IMAGE */
 .product-image {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 10px;
     margin-bottom: 15px;
 }
 
@@ -92,17 +112,52 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
+.product-card:hover img {
+    transform: scale(1.08);
+}
+
+/* PRICING */
 .price {
     font-weight: bold;
-    margin-top: 10px;
+    font-size: 18px;
 }
 
 .old-price {
     text-decoration: line-through;
     color: gray;
     font-size: 14px;
+}
+
+/* BUTTON */
+.buy-btn {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    background: #333;
+}
+
+/* FILTER */
+.filter-group {
+    margin-bottom: 25px;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 </head>
@@ -122,8 +177,6 @@ body {
 <div class="container">
 
 <div class="sidebar">
-    <h3>Filter</h3>
-
     <div class="filter-group">
         <strong>Availability</strong>
         <label><input type="checkbox" id="inStock"> In Stock</label>
@@ -140,7 +193,6 @@ body {
 <div class="products-section">
 
 <div class="top-bar">
-    <h2>Compare 3D Printers</h2>
     <select id="sortSelect">
         <option value="featured">Featured</option>
         <option value="low">Price: Low to High</option>
@@ -200,16 +252,21 @@ function renderProducts() {
 
     grid.innerHTML = "";
 
-    filtered.forEach(p=>{
+    filtered.forEach((p,index)=>{
+        const discount = p.oldPrice - p.price;
         grid.innerHTML += `
-        <div class="product-card">
+        <div class="product-card" style="animation-delay:${index*0.05}s">
+            <div class="sale-badge">- $${discount}</div>
             <div class="product-image">
                 <img src="${p.image}">
             </div>
             <h4>${p.name}</h4>
             <div class="price">$${p.price}</div>
             <div class="old-price">$${p.oldPrice}</div>
-            <div>${p.stock ? "In Stock" : "Out of Stock"}</div>
+            <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
+                ${p.stock ? "In Stock" : "Out of Stock"}
+            </div>
+            <button class="buy-btn">View Product</button>
         </div>
         `;
     });
