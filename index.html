@@ -56,7 +56,7 @@ nav a:hover {
     color: #00bfff;
 }
 
-/* HERO SLIDER */
+/* HERO */
 .hero {
     height: 100vh;
     width: 100%;
@@ -123,7 +123,7 @@ nav a:hover {
     height: 5px;
 }
 
-/* MARKETING SECTION */
+/* MARKETING */
 .marketing {
     padding: 120px 80px;
     background: #f5f5f5;
@@ -158,7 +158,7 @@ nav a:hover {
     color: #00bfff;
 }
 
-/* CREATIVE SECTION */
+/* CREATIVE */
 .creative {
     padding: 120px 80px;
     text-align: center;
@@ -174,6 +174,14 @@ nav a:hover {
     margin: auto;
     color: #555;
     font-size: 18px;
+}
+
+.creative img {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
 /* FOOTER */
@@ -243,6 +251,10 @@ footer {
         Share your prints on social media using <strong>#Special3D</strong> 
         and showcase your creativity. We highlight standout designs from our community.
     </p>
+
+    <!-- ADD YOUR IMAGE HERE -->
+    <img src="creative-world.png" alt="Special 3D Community Showcase">
+
 </section>
 
 <footer>
@@ -253,7 +265,16 @@ footer {
 const slides = document.querySelectorAll(".slide");
 const lines = document.querySelectorAll(".line");
 let current = 0;
-let interval = setInterval(nextSlide, 5000);
+let interval;
+
+function startSlider() {
+    interval = setInterval(nextSlide, 5000);
+}
+
+function resetInterval() {
+    clearInterval(interval);
+    startSlider();
+}
 
 function updateSlider(index) {
     slides.forEach(slide => slide.classList.remove("active"));
@@ -265,11 +286,13 @@ function updateSlider(index) {
 function nextSlide() {
     current = (current + 1) % slides.length;
     updateSlider(current);
+    resetInterval();
 }
 
 function prevSlide() {
     current = (current - 1 + slides.length) % slides.length;
     updateSlider(current);
+    resetInterval();
 }
 
 function goToSlide(index) {
@@ -278,10 +301,7 @@ function goToSlide(index) {
     resetInterval();
 }
 
-function resetInterval() {
-    clearInterval(interval);
-    interval = setInterval(nextSlide, 5000);
-}
+startSlider();
 </script>
 
 </body>
