@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Products - Special 3D</title>
-
 <style>
 body {
     margin: 0;
@@ -27,36 +26,12 @@ body {
     margin-left: 30px;
 }
 
-/* LAYOUT */
-.container {
-    display: flex;
-    padding: 40px 60px;
-    gap: 40px;
-}
-
-.sidebar {
-    width: 250px;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    height: fit-content;
-}
-
-.products-section {
-    flex: 1;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 25px;
-}
-
 /* GRID */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
+    padding: 40px 60px;
 }
 
 /* PRODUCT CARD */
@@ -89,13 +64,12 @@ body {
     border-radius: 20px;
 }
 
-/* STOCK BADGE */
+/* STOCK */
 .stock {
     margin-top: 8px;
     font-size: 13px;
     font-weight: bold;
 }
-
 .in-stock { color: green; }
 .out-stock { color: red; }
 
@@ -107,14 +81,12 @@ body {
     border-radius: 10px;
     margin-bottom: 15px;
 }
-
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
 }
-
 .product-card:hover img {
     transform: scale(1.08);
 }
@@ -124,7 +96,6 @@ body {
     font-weight: bold;
     font-size: 18px;
 }
-
 .old-price {
     text-decoration: line-through;
     color: gray;
@@ -143,25 +114,15 @@ body {
     cursor: pointer;
     transition: 0.3s;
 }
-
 .buy-btn:hover {
     background: #333;
 }
 
-/* FILTER */
-.filter-group {
-    margin-bottom: 25px;
-}
-
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
-
 <body>
 
 <div class="navbar">
@@ -174,33 +135,6 @@ body {
     </div>
 </div>
 
-<div class="container">
-
-<div class="sidebar">
-    <div class="filter-group">
-        <strong>Availability</strong>
-        <label><input type="checkbox" id="inStock"> In Stock</label>
-        <label><input type="checkbox" id="outStock"> Out of Stock</label>
-    </div>
-
-    <div class="filter-group">
-        <strong>Price Range</strong>
-        <input type="range" id="priceRange">
-        <div id="priceDisplay"></div>
-    </div>
-</div>
-
-<div class="products-section">
-
-<div class="top-bar">
-    <select id="sortSelect">
-        <option value="featured">Featured</option>
-        <option value="low">Price: Low to High</option>
-        <option value="high">Price: High to Low</option>
-        <option value="az">Name: A–Z</option>
-    </select>
-</div>
-
 <div class="products-grid" id="productsGrid"></div>
 
 <script>
@@ -211,41 +145,11 @@ const products = [
 ];
 
 const grid = document.getElementById("productsGrid");
-const inStockBox = document.getElementById("inStock");
-const outStockBox = document.getElementById("outStock");
-const sortSelect = document.getElementById("sortSelect");
-const priceRange = document.getElementById("priceRange");
-const priceDisplay = document.getElementById("priceDisplay");
-
-const maxPrice = Math.max(...products.map(p=>p.price));
-priceRange.max = maxPrice;
-priceRange.value = maxPrice;
-priceDisplay.innerText = "$0 - $" + maxPrice.toFixed(2);
 
 function renderProducts() {
-    let filtered = [...products];
-
-    // Availability filter
-    if (inStockBox.checked && !outStockBox.checked)
-        filtered = filtered.filter(p=>p.stock);
-    if (!inStockBox.checked && outStockBox.checked)
-        filtered = filtered.filter(p=>!p.stock);
-
-    // Price filter
-    filtered = filtered.filter(p=>p.price <= priceRange.value);
-
-    // Sorting
-    if (sortSelect.value === "low")
-        filtered.sort((a,b)=>a.price-b.price);
-    if (sortSelect.value === "high")
-        filtered.sort((a,b)=>b.price-a.price);
-    if (sortSelect.value === "az")
-        filtered.sort((a,b)=>a.name.localeCompare(b.name));
-
     grid.innerHTML = "";
-
-    filtered.forEach((p,index)=>{
-        const discount = +(p.oldPrice - p.price).toFixed(2); // round to 2 decimals
+    products.forEach((p,index)=>{
+        const discount = +(p.oldPrice - p.price).toFixed(2);
         grid.innerHTML += `
         <div class="product-card" style="animation-delay:${index*0.05}s">
             ${discount > 0 ? `<div class="sale-badge">- $${discount}</div>` : ''}
@@ -264,17 +168,7 @@ function renderProducts() {
     });
 }
 
-priceRange.addEventListener("input", ()=>{
-    priceDisplay.innerText = "$0 - $" + priceRange.value;
-    renderProducts();
-});
-
-inStockBox.addEventListener("change", renderProducts);
-outStockBox.addEventListener("change", renderProducts);
-sortSelect.addEventListener("change", renderProducts);
-
 renderProducts();
 </script>
-    
 </body>
 </html>
