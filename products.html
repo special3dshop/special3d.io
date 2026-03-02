@@ -6,249 +6,226 @@
 <title>Products - Special 3D</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-}
-
 body {
-    background: #f4f4f4;
-    color: #111;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
 }
 
-/* NAVBAR */
-nav {
+.navbar {
     background: black;
-    color: white;
-    padding: 20px 80px;
+    padding: 15px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-nav a {
+.navbar a {
     color: white;
     text-decoration: none;
     margin-left: 30px;
-    font-size: 14px;
 }
 
-nav a:hover {
-    color: #00bfff;
-}
-
-/* LAYOUT */
 .container {
     display: flex;
-    padding: 60px 80px;
-    gap: 60px;
+    padding: 40px 60px;
+    gap: 40px;
 }
 
-/* SIDEBAR */
 .sidebar {
-    width: 260px;
+    width: 250px;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
 }
 
 .sidebar h3 {
-    margin-bottom: 20px;
+    margin-top: 0;
 }
 
 .filter-group {
-    margin-bottom: 40px;
-}
-
-.filter-group h4 {
-    margin-bottom: 15px;
-    font-size: 16px;
+    margin-bottom: 30px;
 }
 
 .filter-group label {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
 }
 
-.price-range {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
-}
-
-/* PRODUCTS */
-.products {
+.products-section {
     flex: 1;
 }
 
 .top-bar {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-}
-
-.card {
-    background: white;
-    padding: 30px;
-    position: relative;
-    transition: 0.3s;
-    border-radius: 8px;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-}
-
-.badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: black;
-    color: white;
-    padding: 4px 10px;
-    font-size: 12px;
-}
-
-.card h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.specs {
-    font-size: 14px;
-    color: #555;
+    align-items: center;
     margin-bottom: 20px;
 }
 
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .price {
-    font-size: 22px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .old-price {
     text-decoration: line-through;
-    color: #999;
+    color: gray;
     font-size: 14px;
-    margin-left: 10px;
-}
-
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 40px;
-    margin-top: 80px;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-    <div>Special 3D</div>
+<div class="navbar">
+    <div style="color:white; font-weight:bold;">Special 3D</div>
     <div>
-        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
         <a href="parts.html">Parts</a>
         <a href="support.html">Support</a>
         <a href="company.html">Company</a>
     </div>
-</nav>
+</div>
 
 <div class="container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <h3>Compare 3D Products</h3>
+<div class="sidebar">
+    <h3>Filter</h3>
 
-        <div class="filter-group">
-            <h4>Availability</h4>
-            <label><input type="checkbox"> In stock (11)</label>
-            <label><input type="checkbox"> Out of stock (7)</label>
-        </div>
-
-        <div class="filter-group">
-            <h4>Price</h4>
-            <div class="price-range">
-                $0.00 — $1,877.00
-            </div>
-        </div>
+    <div class="filter-group">
+        <strong>Availability</strong>
+        <label><input type="checkbox" id="inStock"> In Stock</label>
+        <label><input type="checkbox" id="outStock"> Out of Stock</label>
     </div>
 
-    <!-- PRODUCTS GRID -->
-    <div class="products">
-
-        <div class="top-bar">
-            <div>Sort by: <strong>Featured</strong></div>
-        </div>
-
-        <div class="product-grid">
-
-            <div class="card">
-                <div class="badge">New</div>
-                <h3>Marshmallow Lamp X</h3>
-                <div class="specs">
-                    Print Volume: 260×260×260mm³<br>
-                    Max Temp: 300°C<br>
-                    Multicolor Support
-                </div>
-                <div class="price">
-                    $299.00 <span class="old-price">$399.00</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="badge">Top</div>
-                <h3>Marshmallow Lamp Max</h3>
-                <div class="specs">
-                    Large Format 350×350×350mm³<br>
-                    16 Color Printing<br>
-                    Heated Chamber 65℃
-                </div>
-                <div class="price">
-                    $849.00 <span class="old-price">$1,099.00</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Marshmallow Lamp Core</h3>
-                <div class="specs">
-                    Speed: 600mm/s<br>
-                    Volume: 250×250×250mm³<br>
-                    CoreXY Construction
-                </div>
-                <div class="price">
-                    $429.00 <span class="old-price">$749.00</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Marshmallow Lamp Pro</h3>
-                <div class="specs">
-                    Volume: 420×420×500mm³<br>
-                    Hotend ≤300°C<br>
-                    8-Color Printing
-                </div>
-                <div class="price">
-                    $599.00 <span class="old-price">$999.00</span>
-                </div>
-            </div>
-
-        </div>
-
+    <div class="filter-group">
+        <strong>Price Range</strong>
+        <input type="range" id="priceRange">
+        <div id="priceDisplay"></div>
     </div>
-
 </div>
 
-<footer>
-© 2026 Special 3D. All rights reserved.
-</footer>
+<div class="products-section">
+
+<div class="top-bar">
+    <h2>Compare 3D Printers</h2>
+    <select id="sortSelect">
+        <option value="featured">Featured</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="az">Name: A–Z</option>
+    </select>
+</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+</div>
+</div>
+
+<script>
+const products = [
+    {name:"Kobra X", price:299, oldPrice:399, stock:true, image:"product1.jpg"},
+    {name:"Kobra S1 Max Combo", price:849, oldPrice:1099, stock:true, image:"product2.jpg"},
+    {name:"Kobra S1 Combo", price:429, oldPrice:749, stock:false, image:"product3.jpg"},
+    {name:"Kobra 3 Max Combo", price:599, oldPrice:999, stock:true, image:"product4.jpg"},
+    {name:"Kobra 3 V2 Combo", price:299, oldPrice:499, stock:true, image:"product5.jpg"},
+    {name:"Kobra S1 Max", price:649, oldPrice:899, stock:false, image:"product6.jpg"},
+    {name:"Kobra S1", price:349, oldPrice:549, stock:true, image:"product7.jpg"},
+    {name:"Kobra 3 Max", price:459, oldPrice:699, stock:true, image:"product8.jpg"},
+    {name:"Kobra 3 V2", price:229, oldPrice:349, stock:true, image:"product9.jpg"},
+    {name:"ACE 2 Pro", price:289, oldPrice:329, stock:false, image:"product10.jpg"},
+    {name:"ACE Pro", price:269, oldPrice:355, stock:true, image:"product11.jpg"}
+];
+
+const grid = document.getElementById("productsGrid");
+const inStockBox = document.getElementById("inStock");
+const outStockBox = document.getElementById("outStock");
+const sortSelect = document.getElementById("sortSelect");
+const priceRange = document.getElementById("priceRange");
+const priceDisplay = document.getElementById("priceDisplay");
+
+const maxPrice = Math.max(...products.map(p=>p.price));
+priceRange.max = maxPrice;
+priceRange.value = maxPrice;
+priceDisplay.innerText = "$0 - $" + maxPrice;
+
+function renderProducts() {
+    let filtered = [...products];
+
+    if (inStockBox.checked && !outStockBox.checked)
+        filtered = filtered.filter(p=>p.stock);
+    if (!inStockBox.checked && outStockBox.checked)
+        filtered = filtered.filter(p=>!p.stock);
+
+    filtered = filtered.filter(p=>p.price <= priceRange.value);
+
+    if (sortSelect.value === "low")
+        filtered.sort((a,b)=>a.price-b.price);
+    if (sortSelect.value === "high")
+        filtered.sort((a,b)=>b.price-a.price);
+    if (sortSelect.value === "az")
+        filtered.sort((a,b)=>a.name.localeCompare(b.name));
+
+    grid.innerHTML = "";
+
+    filtered.forEach(p=>{
+        grid.innerHTML += `
+        <div class="product-card">
+            <div class="product-image">
+                <img src="${p.image}">
+            </div>
+            <h4>${p.name}</h4>
+            <div class="price">$${p.price}</div>
+            <div class="old-price">$${p.oldPrice}</div>
+            <div>${p.stock ? "In Stock" : "Out of Stock"}</div>
+        </div>
+        `;
+    });
+}
+
+priceRange.addEventListener("input", ()=>{
+    priceDisplay.innerText = "$0 - $" + priceRange.value;
+    renderProducts();
+});
+
+inStockBox.addEventListener("change", renderProducts);
+outStockBox.addEventListener("change", renderProducts);
+sortSelect.addEventListener("change", renderProducts);
+
+renderProducts();
+</script>
 
 </body>
 </html>
