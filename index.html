@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special 3D</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* Navigation Bar */
+nav {
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00bfff;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 70px;
+    height: 90vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Section Pages */
+.section {
+    display: none;
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.section.active-section {
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Special 3D</div>
+    <ul>
+        <li><a href="#" onclick="showSection('home')">Products</a></li>
+        <li><a href="#" onclick="showSection('parts')">Parts</a></li>
+        <li><a href="#" onclick="showSection('support')">Support</a></li>
+        <li><a href="#" onclick="showSection('company')">Company</a></li>
+    </ul>
+</nav>
+
+<!-- HOME (Slider) -->
+<div id="home" class="section active-section">
+    <div class="hero">
+        <img src="slide1.jpg" class="slide active">
+        <img src="slide2.jpg" class="slide">
+        <img src="slide3.jpg" class="slide">
+    </div>
+</div>
+
+<!-- PRODUCTS -->
+<div id="products" class="section">
+    <h1>Our Products</h1>
+    <p>Explore our innovative 3D printed lighting and custom designs.</p>
+</div>
+
+<!-- PARTS -->
+<div id="parts" class="section">
+    <h1>Replacement Parts</h1>
+    <p>High-quality 3D printed parts and accessories.</p>
+</div>
+
+<!-- SUPPORT -->
+<div id="support" class="section">
+    <h1>Support</h1>
+    <p>Contact us for technical help or product questions.</p>
+</div>
+
+<!-- COMPANY -->
+<div id="company" class="section">
+    <h1>About Special 3D</h1>
+    <p>We design and manufacture premium 3D printed products.</p>
+</div>
+
+<script>
+// Image Slider
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 4000);
+
+// Page Switching
+function showSection(id) {
+    document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active-section");
+    });
+    document.getElementById(id).classList.add("active-section");
+}
+</script>
+
+</body>
+</html>
