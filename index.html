@@ -97,15 +97,10 @@ nav a:hover {
     background: rgba(0,0,0,0.7);
 }
 
-.arrow.left {
-    left: 30px;
-}
+.left { left: 30px; }
+.right { right: 30px; }
 
-.arrow.right {
-    right: 30px;
-}
-
-/* INDICATOR LINES */
+/* INDICATORS */
 .indicators {
     position: absolute;
     bottom: 40px;
@@ -113,7 +108,6 @@ nav a:hover {
     display: flex;
     justify-content: center;
     gap: 20px;
-    z-index: 10;
 }
 
 .line {
@@ -129,24 +123,60 @@ nav a:hover {
     height: 5px;
 }
 
-/* SECTIONS */
-.section {
+/* MARKETING SECTION */
+.marketing {
+    padding: 120px 80px;
+    background: #f5f5f5;
+}
+
+.marketing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+}
+
+.marketing-item h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.marketing-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.marketing-item a {
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: black;
+    transition: 0.3s;
+}
+
+.marketing-item a:hover {
+    color: #00bfff;
+}
+
+/* CREATIVE SECTION */
+.creative {
     padding: 120px 80px;
     text-align: center;
 }
 
-.section h2 {
-    font-size: 40px;
+.creative h2 {
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
-.section p {
+.creative p {
     max-width: 800px;
     margin: auto;
-    font-size: 18px;
     color: #555;
+    font-size: 18px;
 }
 
+/* FOOTER */
 footer {
     background: #111;
     color: white;
@@ -161,18 +191,18 @@ footer {
 <nav>
     <div class="logo">Special 3D</div>
     <ul>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#parts">Parts</a></li>
-        <li><a href="#support">Support</a></li>
-        <li><a href="#company">Company</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="parts.html">Parts</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="company.html">Company</a></li>
     </ul>
 </nav>
 
 <section class="hero">
 
-    <img src="hero1.jpg" class="slide active">
-    <img src="hero2.jpg" class="slide">
-    <img src="hero3.jpg" class="slide">
+    <img src="clean lamp photo.png" class="slide active">
+    <img src="lamp desk setup.png" class="slide">
+    <img src="lamp shelf setup.png" class="slide">
 
     <button class="arrow left" onclick="prevSlide()">‹</button>
     <button class="arrow right" onclick="nextSlide()">›</button>
@@ -185,24 +215,34 @@ footer {
 
 </section>
 
-<section id="products" class="section">
-    <h2>Products</h2>
-    <p>Premium 3D printed lighting and engineered designs.</p>
+<section class="marketing">
+    <div class="marketing-grid">
+        <div class="marketing-item">
+            <h3>Signature Lamps</h3>
+            <p>Extremely detailed 3D printed lighting built with precision and design focus.</p>
+            <a href="products.html">Learn More →</a>
+        </div>
+
+        <div class="marketing-item">
+            <h3>Materials</h3>
+            <p>High-quality printing filaments engineered for strength and smooth finishes.</p>
+            <a href="parts.html">Learn More →</a>
+        </div>
+
+        <div class="marketing-item">
+            <h3>Accessories</h3>
+            <p>Advanced parts and add-ons that elevate your 3D printing experience.</p>
+            <a href="parts.html">Learn More →</a>
+        </div>
+    </div>
 </section>
 
-<section id="parts" class="section">
-    <h2>Parts</h2>
-    <p>High-quality replacement parts and precision components.</p>
-</section>
-
-<section id="support" class="section">
-    <h2>Support</h2>
-    <p>Technical documentation and assistance.</p>
-</section>
-
-<section id="company" class="section">
-    <h2>Company</h2>
-    <p>Innovation through precision manufacturing.</p>
+<section class="creative">
+    <h2>Special 3D Creative World</h2>
+    <p>
+        Share your prints on social media using <strong>#Special3D</strong> 
+        and showcase your creativity. We highlight standout designs from our community.
+    </p>
 </section>
 
 <footer>
