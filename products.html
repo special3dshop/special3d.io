@@ -26,12 +26,36 @@ body {
     margin-left: 30px;
 }
 
+/* PRICE FILTER */
+.price-filter {
+    max-width: 400px;
+    margin: 30px auto 10px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price-filter label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#priceRange {
+    width: 100%;
+}
+
+#priceDisplay {
+    margin-top: 6px;
+    font-weight: bold;
+}
+
 /* GRID */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
-    padding: 40px 60px;
+    padding: 20px 60px 60px;
 }
 
 /* PRODUCT CARD */
@@ -135,6 +159,14 @@ body {
     </div>
 </div>
 
+<!-- PRICE FILTER -->
+<div class="price-filter">
+    <label for="priceRange">Filter by Price</label>
+    <input type="range" id="priceRange" min="0" max="100" step="0.01">
+    <div id="priceDisplay">$0.00 - $100.00</div>
+</div>
+
+<!-- PRODUCTS GRID -->
 <div class="products-grid" id="productsGrid"></div>
 
 <script>
@@ -145,28 +177,44 @@ const products = [
 ];
 
 const grid = document.getElementById("productsGrid");
+const priceRange = document.getElementById("priceRange");
+const priceDisplay = document.getElementById("priceDisplay");
+
+// set max price dynamically
+const maxPrice = Math.max(...products.map(p => p.price));
+priceRange.max = maxPrice;
+priceRange.value = maxPrice;
+priceDisplay.innerText = `$0.00 - $${maxPrice.toFixed(2)}`;
 
 function renderProducts() {
+    const max = parseFloat(priceRange.value);
     grid.innerHTML = "";
+
     products.forEach((p,index)=>{
-        const discount = +(p.oldPrice - p.price).toFixed(2);
-        grid.innerHTML += `
-        <div class="product-card" style="animation-delay:${index*0.05}s">
-            ${discount > 0 ? `<div class="sale-badge">- $${discount}</div>` : ''}
-            <div class="product-image">
-                <img src="${p.image}" alt="${p.name}" onerror="this.src='placeholder.png'">
-            </div>
-            <h4>${p.name}</h4>
-            <div class="price">$${p.price.toFixed(2)}</div>
-            <div class="old-price">$${p.oldPrice.toFixed(2)}</div>
-            <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
-                ${p.stock ? "In Stock" : "Out of Stock"}
-            </div>
-            <button class="buy-btn">View Product</button>
-        </div>
-        `;
+        if(p.price <= max) {
+            const discount = +(p.oldPrice - p.price).toFixed(2);
+            grid.innerHTML += `
+            <div class="product-card" style="animation-delay:${index*0.05}s">
+                ${discount > 0 ? `<div class="sale-badge">- $${discount}</div>` : ''}
+                <div class="product-image">
+                    <img src="${p.image}" alt="${p.name}" onerror="this.src='placeholder.png'">
+                </div>
+                <h4>${p.name}</h4>
+                <div class="price">$${p.price.toFixed(2)}</div>
+                <div class="old-price">$${p.oldPrice.toFixed(2)}</div>
+                <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
+                    ${p.stock ? "In Stock" : "Out of Stock"}
+                </div>
+                <button class="buy-btn">View Product</button>
+            </div>`;
+        }
     });
 }
+
+priceRange.addEventListener("input", ()=>{
+    priceDisplay.innerText = `$0.00 - $${parseFloat(priceRange.value).toFixed(2)}`;
+    renderProducts();
+});
 
 renderProducts();
 </script>
