@@ -200,9 +200,9 @@ body {
 
 <script>
 const products = [
-    {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product1.png"},
-    {name:"Marshmallow No Eyes", price:24.99, oldPrice:28.79, stock:true, image:"product2.png"},
-    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png"},
+    {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product1.png", file:"marshmallow.html"},
+    {name:"Marshmallow No Eyes", price:24.99, oldPrice:28.79, stock:true, image:"product2.png", file:"marshmallow-no-eyes.html"},
+    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png", file:"egg.html"},
 ];
 
 const grid = document.getElementById("productsGrid");
@@ -225,7 +225,6 @@ function renderProducts() {
     if (!inStockBox.checked && outStockBox.checked)
         filtered = filtered.filter(p => !p.stock);
 
-    // FIX: convert range value to number
     filtered = filtered.filter(p => p.price <= Number(priceRange.value));
 
     if (sortSelect.value === "low")
@@ -251,7 +250,7 @@ function renderProducts() {
             <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
                 ${p.stock ? "In Stock" : "Out of Stock"}
             </div>
-            <button class="buy-btn">View Part</button>
+            <button class="buy-btn" onclick="location.href='${p.file}'">View Part</button>
         </div>
         `;
     });
