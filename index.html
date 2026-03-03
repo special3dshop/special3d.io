@@ -24,22 +24,9 @@ body {
 nav {
     position: fixed;
     width: 100%;
-    padding: 20px 80px;
+    padding: 20px 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
-
-/* NAVBAR */
-nav {
-    position: fixed;
-    width: 100%;
-    padding: 20px 0; /* reduce side padding */
-    display: flex;
-    justify-content: center; /* center everything horizontally */
+    justify-content: center;
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -50,7 +37,7 @@ nav .logo {
     font-size: 22px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-right: 60px; /* space between logo and menu */
+    margin-right: 60px;
 }
 
 nav ul {
@@ -62,7 +49,7 @@ nav ul {
 nav a {
     color: white;
     text-decoration: none;
-    font-size: 16px; /* slightly larger for eye-catching effect */
+    font-size: 16px;
     letter-spacing: 1.2px;
     transition: 0.3s;
     padding: 8px 12px;
@@ -70,10 +57,10 @@ nav a {
 }
 
 nav a:hover {
-    background: #00bfff; /* subtle highlight behind the link */
+    background: #00bfff;
     color: white;
 }
-    
+
 /* HERO */
 .hero {
     height: 100vh;
@@ -209,6 +196,65 @@ footer {
     padding: 40px;
     text-align: center;
 }
+
+/* COOKIE MODAL */
+#cookie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    display: none; /* hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.cookie-content {
+    background: #111;
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.cookie-content p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.cookie-buttons button {
+    margin: 0 10px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#cookie-agree {
+    background: #00bfff;
+    color: white;
+}
+
+#cookie-agree:hover {
+    background: #009acd;
+}
+
+#cookie-decline {
+    background: #555;
+    color: white;
+}
+
+#cookie-decline:hover {
+    background: #333;
+}
 </style>
 </head>
 
@@ -225,7 +271,6 @@ footer {
 </nav>
 
 <section class="hero">
-
     <img src="clean lamp photo.png" class="slide active">
     <img src="lamp desk setup.png" class="slide">
     <img src="lamp shelf setup.png" class="slide">
@@ -238,7 +283,6 @@ footer {
         <div class="line" onclick="goToSlide(1)"></div>
         <div class="line" onclick="goToSlide(2)"></div>
     </div>
-
 </section>
 
 <section class="marketing">
@@ -270,16 +314,26 @@ footer {
         and showcase your creativity. We highlight standout designs from our community.
     </p>
 
-    <!-- ADD YOUR IMAGE HERE -->
     <img src="creative-world.png" alt="Special 3D Community Showcase">
-
 </section>
 
 <footer>
     © 2026 Special 3D. All rights reserved.
 </footer>
 
+<!-- COOKIE CONSENT MODAL -->
+<div id="cookie-modal">
+  <div class="cookie-content">
+    <p>We use cookies to improve your experience on Special 3D. Do you accept cookies?</p>
+    <div class="cookie-buttons">
+      <button id="cookie-agree">Agree</button>
+      <button id="cookie-decline">Decline</button>
+    </div>
+  </div>
+</div>
+
 <script>
+/* SLIDER */
 const slides = document.querySelectorAll(".slide");
 const lines = document.querySelectorAll(".line");
 let current = 0;
@@ -320,6 +374,25 @@ function goToSlide(index) {
 }
 
 startSlider();
+
+/* COOKIE MODAL */
+const cookieModal = document.getElementById('cookie-modal');
+const agreeBtn = document.getElementById('cookie-agree');
+const declineBtn = document.getElementById('cookie-decline');
+
+if (!localStorage.getItem('cookiesConsent')) {
+    cookieModal.style.display = 'flex';
+}
+
+agreeBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesConsent', 'agree');
+    cookieModal.style.display = 'none';
+});
+
+declineBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesConsent', 'decline');
+    cookieModal.style.display = 'none';
+});
 </script>
 
 </body>
