@@ -26,25 +26,41 @@ body {
     margin-left: 30px;
 }
 
-/* PRICE FILTER */
-.price-filter {
-    max-width: 400px;
-    margin: 30px auto 10px;
-    padding: 0 20px;
+/* LAYOUT */
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px 40px;
+    gap: 20px;
 }
 
+.sidebar {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.products-section {
+    flex: 1;
+}
+
+/* SORT BAR */
+.sort-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+/* PRICE FILTER */
 .price-filter label {
-    margin-bottom: 8px;
+    display: block;
     font-weight: bold;
+    margin-bottom: 8px;
 }
-
 #priceRange {
     width: 100%;
 }
-
 #priceDisplay {
     margin-top: 6px;
     font-weight: bold;
@@ -55,7 +71,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
-    padding: 20px 60px 60px;
 }
 
 /* PRODUCT CARD */
@@ -145,6 +160,11 @@ body {
 @keyframes fadeIn {
     to { opacity: 1; transform: translateY(0); }
 }
+
+@media(max-width: 900px){
+    .container { flex-direction: column; padding: 20px; }
+    .sidebar { width: 100%; margin-bottom: 20px; }
+}
 </style>
 </head>
 <body>
@@ -159,15 +179,30 @@ body {
     </div>
 </div>
 
-<!-- PRICE FILTER -->
-<div class="price-filter">
-    <label for="priceRange">Filter by Price</label>
-    <input type="range" id="priceRange" min="0" max="100" step="0.01">
-    <div id="priceDisplay">$0.00 - $100.00</div>
-</div>
+<div class="container">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="price-filter">
+            <label for="priceRange">Filter by Price</label>
+            <input type="range" id="priceRange" min="0" max="100" step="0.01">
+            <div id="priceDisplay">$0.00 - $100.00</div>
+        </div>
+    </div>
 
-<!-- PRODUCTS GRID -->
-<div class="products-grid" id="productsGrid"></div>
+    <!-- PRODUCTS SECTION -->
+    <div class="products-section">
+        <div class="sort-bar">
+            <select id="sortSelect">
+                <option value="featured">Featured</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+                <option value="az">Name: A–Z</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+</div>
 
 <script>
 const products = [
@@ -176,11 +211,13 @@ const products = [
     {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png"},
 ];
 
+// DOM elements
 const grid = document.getElementById("productsGrid");
 const priceRange = document.getElementById("priceRange");
 const priceDisplay = document.getElementById("priceDisplay");
+const sortSelect = document.getElementById("sortSelect");
 
-// set max price dynamically
+// Setup max price
 const maxPrice = Math.max(...products.map(p => p.price));
 priceRange.max = maxPrice;
 priceRange.value = maxPrice;
@@ -188,35 +225,43 @@ priceDisplay.innerText = `$0.00 - $${maxPrice.toFixed(2)}`;
 
 function renderProducts() {
     const max = parseFloat(priceRange.value);
-    grid.innerHTML = "";
+    let filtered = products.filter(p => p.price <= max);
 
-    products.forEach((p,index)=>{
-        if(p.price <= max) {
-            const discount = +(p.oldPrice - p.price).toFixed(2);
-            grid.innerHTML += `
-            <div class="product-card" style="animation-delay:${index*0.05}s">
-                ${discount > 0 ? `<div class="sale-badge">- $${discount}</div>` : ''}
-                <div class="product-image">
-                    <img src="${p.image}" alt="${p.name}" onerror="this.src='placeholder.png'">
-                </div>
-                <h4>${p.name}</h4>
-                <div class="price">$${p.price.toFixed(2)}</div>
-                <div class="old-price">$${p.oldPrice.toFixed(2)}</div>
-                <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
-                    ${p.stock ? "In Stock" : "Out of Stock"}
-                </div>
-                <button class="buy-btn">View Product</button>
-            </div>`;
-        }
+    // Sorting
+    if(sortSelect.value === "low") filtered.sort((a,b)=>a.price-b.price);
+    else if(sortSelect.value === "high") filtered.sort((a,b)=>b.price-a.price);
+    else if(sortSelect.value === "az") filtered.sort((a,b)=>a.name.localeCompare(b.name));
+
+    grid.innerHTML = "";
+    filtered.forEach((p,index)=>{
+        const discount = +(p.oldPrice - p.price).toFixed(2);
+        grid.innerHTML += `
+        <div class="product-card" style="animation-delay:${index*0.05}s">
+            ${discount > 0 ? `<div class="sale-badge">- $${discount}</div>` : ''}
+            <div class="product-image">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='placeholder.png'">
+            </div>
+            <h4>${p.name}</h4>
+            <div class="price">$${p.price.toFixed(2)}</div>
+            <div class="old-price">$${p.oldPrice.toFixed(2)}</div>
+            <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
+                ${p.stock ? "In Stock" : "Out of Stock"}
+            </div>
+            <button class="buy-btn">View Product</button>
+        </div>`;
     });
 }
 
+// Event listeners
 priceRange.addEventListener("input", ()=>{
     priceDisplay.innerText = `$0.00 - $${parseFloat(priceRange.value).toFixed(2)}`;
     renderProducts();
 });
+sortSelect.addEventListener("change", renderProducts);
 
+// Initial render
 renderProducts();
 </script>
+
 </body>
 </html>
