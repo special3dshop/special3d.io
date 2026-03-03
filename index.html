@@ -24,10 +24,9 @@ body {
 nav {
     position: fixed;
     width: 100%;
-    padding: 20px 80px;
+    padding: 20px 0; /* reduce side padding */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center; /* center everything horizontally */
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -38,6 +37,7 @@ nav .logo {
     font-size: 22px;
     font-weight: 600;
     letter-spacing: 1px;
+    margin-right: 60px; /* space between logo and menu */
 }
 
 nav ul {
@@ -49,15 +49,18 @@ nav ul {
 nav a {
     color: white;
     text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 16px; /* slightly larger for eye-catching effect */
+    letter-spacing: 1.2px;
     transition: 0.3s;
+    padding: 8px 12px;
+    border-radius: 6px;
 }
 
 nav a:hover {
-    color: #00bfff;
+    background: #00bfff; /* subtle highlight behind the link */
+    color: white;
 }
-
+    
 /* HERO */
 .hero {
     height: 100vh;
