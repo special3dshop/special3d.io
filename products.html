@@ -175,7 +175,7 @@ body {
 
     <div class="filter-group">
         <strong>Price Range</strong>
-        <input type="range" id="priceRange">
+        <input type="range" id="priceRange" step="0.01">
         <div id="priceDisplay"></div>
     </div>
 </div>
@@ -219,11 +219,12 @@ function renderProducts() {
     let filtered = [...products];
 
     if (inStockBox.checked && !outStockBox.checked)
-        filtered = filtered.filter(p=>p.stock);
+        filtered = filtered.filter(p => p.stock);
     if (!inStockBox.checked && outStockBox.checked)
-        filtered = filtered.filter(p=>!p.stock);
+        filtered = filtered.filter(p => !p.stock);
 
-    filtered = filtered.filter(p=>p.price <= priceRange.value);
+    // FIX: convert range value to number
+    filtered = filtered.filter(p => p.price <= Number(priceRange.value));
 
     if (sortSelect.value === "low")
         filtered.sort((a,b)=>a.price-b.price);
@@ -235,7 +236,7 @@ function renderProducts() {
     grid.innerHTML = "";
 
     filtered.forEach((p,index)=>{
-        const discount = p.oldPrice - p.price;
+        const discount = (p.oldPrice - p.price).toFixed(2);
         grid.innerHTML += `
         <div class="product-card" style="animation-delay:${index*0.05}s">
             <div class="sale-badge">- $${discount}</div>
