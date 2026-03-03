@@ -8,26 +8,45 @@
 <title>Parts - Special 3D</title>
 
 <style>
+/* -------------------- Navbar -------------------- */
+.navbar {
+    width: 100%;
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: #ddd;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f3f3f3;
+    padding-top: 70px; /* prevent content from hiding behind navbar */
 }
 
-.navbar {
-    background: black;
-    padding: 15px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 30px;
-}
-
+/* -------------------- Layout -------------------- */
 .container {
     display: flex;
     padding: 40px 60px;
@@ -52,6 +71,7 @@ body {
     margin-bottom: 25px;
 }
 
+/* -------------------- Products Grid -------------------- */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -141,10 +161,12 @@ body {
     background: #333;
 }
 
+/* -------------------- Sidebar Filters -------------------- */
 .filter-group {
     margin-bottom: 25px;
 }
 
+/* -------------------- Animations -------------------- */
 @keyframes fadeIn {
     to {
         opacity: 1;
