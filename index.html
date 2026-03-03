@@ -33,34 +33,24 @@ nav {
     z-index: 1000;
 }
 
-/* Logo with hover effect */
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0; /* reduce side padding */
+    display: flex;
+    justify-content: center; /* center everything horizontally */
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
 nav .logo {
     color: white;
     font-size: 22px;
     font-weight: 600;
     letter-spacing: 1px;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-nav .logo::after {
-    content: "we are built different";
-    position: absolute;
-    left: 0;
-    top: 100%; /* start hidden below */
-    width: 100%;
-    text-align: center;
-    color: #00bfff; /* highlight color */
-    font-size: 14px;
-    font-weight: 400;
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-nav .logo:hover::after {
-    top: 120%; /* glides downward */
-    opacity: 1;
+    margin-right: 60px; /* space between logo and menu */
 }
 
 nav ul {
@@ -72,13 +62,16 @@ nav ul {
 nav a {
     color: white;
     text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 16px; /* slightly larger for eye-catching effect */
+    letter-spacing: 1.2px;
     transition: 0.3s;
+    padding: 8px 12px;
+    border-radius: 6px;
 }
 
 nav a:hover {
-    color: #00bfff;
+    background: #00bfff; /* subtle highlight behind the link */
+    color: white;
 }
     
 /* HERO */
