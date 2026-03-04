@@ -177,7 +177,7 @@ body {
 
     <div class="filter-group">
         <strong>Price Range</strong>
-        <input type="range" id="priceRange">
+        <input type="range" id="priceRange" step="0.01">
         <div id="priceDisplay"></div>
     </div>
 </div>
@@ -200,11 +200,11 @@ body {
 
 <script>
 const products = [
-    {name:"Marshmallow Top", price:5, oldPrice:6, stock:true, image:"part1.png"},
-    {name:"Marshmallow No Eyes Top", price:4.50, oldPrice:5.80, stock:true, image:"part2.png"},
-    {name:"Cord Holder", price:3, oldPrice:4, stock:true, image:"part3.png"},
-    {name:"Cord Holder Cap", price:2, oldPrice:3, stock:true, image:"part4.png"},
-    {name:"Egg Top", price:5, oldPrice:6, stock:true, image:"part5.png"}
+    {name:"Marshmallow Top", price:5, oldPrice:6, stock:true, image:"part1.png", file:"marshmallow-top.html"},
+    {name:"Marshmallow No Eyes Top", price:4.50, oldPrice:5.80, stock:true, image:"part2.png", file:"marshmallow-no-eyes-top.html"},
+    {name:"Cord Holder", price:3, oldPrice:4, stock:true, image:"part3.png", file:"cord-holder.html"},
+    {name:"Cord Holder Cap", price:2, oldPrice:3, stock:true, image:"part4.png", file:"cord-holder-cap.html"},
+    {name:"Egg Top", price:5, oldPrice:6, stock:true, image:"part5.png", file:"egg-top.html"}
 ];
 
 const grid = document.getElementById("productsGrid");
@@ -223,11 +223,11 @@ function renderProducts() {
     let filtered = [...products];
 
     if (inStockBox.checked && !outStockBox.checked)
-        filtered = filtered.filter(p=>p.stock);
+        filtered = filtered.filter(p => p.stock);
     if (!inStockBox.checked && outStockBox.checked)
-        filtered = filtered.filter(p=>!p.stock);
+        filtered = filtered.filter(p => !p.stock);
 
-    filtered = filtered.filter(p=>p.price <= priceRange.value);
+    filtered = filtered.filter(p => p.price <= Number(priceRange.value));
 
     if (sortSelect.value === "low")
         filtered.sort((a,b)=>a.price-b.price);
@@ -239,7 +239,7 @@ function renderProducts() {
     grid.innerHTML = "";
 
     filtered.forEach((p,index)=>{
-        const discount = p.oldPrice - p.price;
+        const discount = (p.oldPrice - p.price).toFixed(2);
         grid.innerHTML += `
         <div class="product-card" style="animation-delay:${index*0.05}s">
             <div class="sale-badge">- $${discount}</div>
@@ -252,7 +252,7 @@ function renderProducts() {
             <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
                 ${p.stock ? "In Stock" : "Out of Stock"}
             </div>
-            <button class="buy-btn">View Part</button>
+            <button class="buy-btn" onclick="location.href='${p.file}'">View Part</button>
         </div>
         `;
     });
