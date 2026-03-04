@@ -33,10 +33,6 @@ body { background:#f3f3f3; color:#111; }
 .feature-box { background:white; padding:30px; border-radius:15px; width:260px; box-shadow:0 10px 25px rgba(0,0,0,0.08); text-align:center; }
 .feature-box h3 { margin-bottom:10px; font-size:18px; }
 .feature-box p { font-size:14px; color:#555; line-height:1.5; }
-/* Persuasive Section */
-.story { max-width:900px; margin:50px auto; background:white; border-radius:15px; padding:50px 40px; box-shadow:0 10px 30px rgba(0,0,0,0.05); }
-.story h3 { font-size:24px; margin-bottom:15px; color:#00bfff; }
-.story p { font-size:16px; line-height:1.7; color:#555; }
 /* Responsive */
 @media(max-width:1000px) { 
     .product-container { flex-direction:column; padding:40px; } 
@@ -58,33 +54,25 @@ body { background:#f3f3f3; color:#111; }
 <!-- Product Main -->
 <div class="product-container">
 <div class="product-left">
-  <!-- Thumbnails -->
   <div class="thumbnails" style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
-    <img src="top1.png" alt="Lamp Top 1" class="thumb" style="width:60px; cursor:pointer;">
-    <img src="top2.png" alt="Lamp Top 2" class="thumb" style="width:60px; cursor:pointer;">
-    <img src="top3.png" alt="Lamp Top 3" class="thumb" style="width:60px; cursor:pointer;">
+    <img src="https://images.pexels.com/photos/586344/pexels-photo-586344.jpeg" alt="Lamp Example 1" class="thumb" style="width:60px; cursor:pointer;">
+    <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg" alt="Lamp Example 2" class="thumb" style="width:60px; cursor:pointer;">
+    <img src="https://images.pexels.com/photos/142744/pexels-photo-142744.jpeg" alt="Lamp Example 3" class="thumb" style="width:60px; cursor:pointer;">
   </div>
-  <!-- Main image -->
-  <img src="top1.png" alt="Lamp Top" id="mainImage">
+  <img src="https://images.pexels.com/photos/586344/pexels-photo-586344.jpeg" alt="Lamp Top" id="mainImage">
 </div>
 <div class="product-right">
 <div class="product-title">Lamp Top Replacement</div>
 <div><span class="price">$5.00</span><span class="old-price">$6.00</span></div>
 <div class="stock">In Stock</div>
 <div class="description">
-Replacement top part for your 3D-printed lamp (cylindrical, 120mm × 120mm, ~75g). Made with PLA for durability and a smooth finish. Perfect if your original lamp top broke or got damaged. Easy to replace and keeps your lamp looking like new.
+Replacement top part for your 3D‑printed lamp (cylindrical, 120 mm × 120 mm, ~75 g). Made with PLA for durability and a smooth finish. Perfect if your original lamp top broke or got damaged. Easy to replace and keeps your lamp looking like new.
 </div>
-<button class="buy-btn" onclick="window.location.href='https://www.etsy.com/listing/986270675/samosa-plush-chew-toy-for-pets'">Buy on Etsy</button>
+<button class="buy-btn" onclick="window.location.href='https://www.etsy.com'">Buy on Etsy</button>
 </div>
-</div>
-
-<!-- Persuasive Storytelling -->
-<div class="story">
-<h3>Designed for Replacement, Loved by Users</h3>
-<p>This replacement lamp top is crafted with basic PLA for durability and a smooth finish. Sized at 120mm height and 120mm diameter, it’s lightweight (~75g) and easy to handle, making it simple to replace your broken top and keep your lamp fully functional.</p>
 </div>
 
-<!-- Features -->
+<!-- Features (unchanged) -->
 <div class="section">
 <h2>Key Features</h2>
 <div class="features">
@@ -93,34 +81,34 @@ Replacement top part for your 3D-printed lamp (cylindrical, 120mm × 120mm, ~75g
 <p>Every piece is 3D printed with millimeter accuracy for a perfect fit and finish.</p>
 </div>
 <div class="feature-box">
-<h3>Premium Material</h3>
-<p>High-quality PLA ensures durability, smooth touch, and long-lasting performance.</p>
-</div>
-<div class="feature-box">
-<h3>Everyday Use</h3>
-<p>Lightweight, sturdy, and safe to handle for frequent replacement.</p>
+<h3>Basic PLA</h3>
+<p>Durable PLA material keeps the part stable and reliable.</p>
 </div>
 <div class="feature-box">
 <h3>Easy Replacement</h3>
-<p>Perfect fit for your existing lamp; quick and simple to swap in case of damage.</p>
+<p>Quick and simple to swap into your existing lamp assembly.</p>
+</div>
+<div class="feature-box">
+<h3>Everyday Use</h3>
+<p>Lightweight and sturdy enough for regular handling.</p>
 </div>
 </div>
 </div>
 
-<!-- Technical Specifications -->
+<!-- Specifications -->
 <div class="section" style="background:#f3f3f3;">
 <h2>Specifications</h2>
 <p>
 Material: PLA<br>
 Shape: Cylinder<br>
-Diameter: 120mm<br>
-Height: 120mm<br>
-Weight: ~75g<br>
-Purpose: Replacement top for lamp
+Diameter: 120 mm<br>
+Height: 120 mm<br>
+Weight: ~75 g<br>
+Purpose: Replacement top component
 </p>
 </div>
 
-<!-- Thumbnail click script -->
+<!-- Image switch script -->
 <script>
 const mainImage = document.getElementById('mainImage');
 const thumbnails = document.querySelectorAll('.thumb');
