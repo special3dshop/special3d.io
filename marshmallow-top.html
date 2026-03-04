@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marshmallow Top - Special 3D</title>
+<title>Lamp Top Replacement - Special 3D</title>
 <link rel="icon" href="favicon.png">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif; }
@@ -58,24 +58,30 @@ body { background:#f3f3f3; color:#111; }
 <!-- Product Main -->
 <div class="product-container">
 <div class="product-left">
-<img src="part1.png" alt="Marshmallow Top">
+  <!-- Thumbnails -->
+  <div class="thumbnails" style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+    <img src="top1.png" alt="Lamp Top 1" class="thumb" style="width:60px; cursor:pointer;">
+    <img src="top2.png" alt="Lamp Top 2" class="thumb" style="width:60px; cursor:pointer;">
+    <img src="top3.png" alt="Lamp Top 3" class="thumb" style="width:60px; cursor:pointer;">
+  </div>
+  <!-- Main image -->
+  <img src="top1.png" alt="Lamp Top" id="mainImage">
 </div>
 <div class="product-right">
-<div class="product-title">Marshmallow Top</div>
+<div class="product-title">Lamp Top Replacement</div>
 <div><span class="price">$5.00</span><span class="old-price">$6.00</span></div>
 <div class="stock">In Stock</div>
 <div class="description">
-Enhance your Marshmallow collectible with this perfectly 3D-printed top. Smooth matte finish, high precision, and lightweight design make it ideal for everyday display and handling. Compact yet striking, it adds personality and charm to any collection.
+Replacement top part for your 3D-printed lamp (cylindrical, 120mm × 120mm, ~75g). Made with PLA for durability and a smooth finish. Perfect if your original lamp top broke or got damaged. Easy to replace and keeps your lamp looking like new.
 </div>
-<button class="buy-btn" onclick="window.location.href='https://www.etsy.com/listing/986270675/samosa-plush-chew-toy-for-pets?ls=s&ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=samosa'">Buy on Etsy</button>
+<button class="buy-btn" onclick="window.location.href='https://www.etsy.com/listing/986270675/samosa-plush-chew-toy-for-pets'">Buy on Etsy</button>
 </div>
 </div>
 
 <!-- Persuasive Storytelling -->
 <div class="story">
-<h3>Designed for Collectors, Loved by Everyone</h3>
-<p>Every Marshmallow Top is crafted with premium PLA+ material for durability and a flawless matte finish. Perfectly sized at 60mm height and 50mm width, it’s lightweight and easy to handle, making it great for desks, shelves, or creative displays. Swap, stack, or showcase your tops to create endless possibilities.</p>
-<p>Whether you’re gifting a collector or adding to your own creative setup, this top is engineered to impress. Smooth edges, vibrant color, and precise detailing make it a standout piece that blends seamlessly with any environment.</p>
+<h3>Designed for Replacement, Loved by Users</h3>
+<p>This replacement lamp top is crafted with basic PLA for durability and a smooth finish. Sized at 120mm height and 120mm diameter, it’s lightweight (~75g) and easy to handle, making it simple to replace your broken top and keep your lamp fully functional.</p>
 </div>
 
 <!-- Features -->
@@ -88,15 +94,15 @@ Enhance your Marshmallow collectible with this perfectly 3D-printed top. Smooth 
 </div>
 <div class="feature-box">
 <h3>Premium Material</h3>
-<p>High-quality PLA+ ensures durability, smooth touch, and long-lasting vibrancy.</p>
+<p>High-quality PLA ensures durability, smooth touch, and long-lasting performance.</p>
 </div>
 <div class="feature-box">
 <h3>Everyday Use</h3>
-<p>Lightweight, sturdy, and safe to handle for frequent display or play.</p>
+<p>Lightweight, sturdy, and safe to handle for frequent replacement.</p>
 </div>
 <div class="feature-box">
-<h3>Perfect Gift</h3>
-<p>Ideal for collectors, hobbyists, or anyone who appreciates unique 3D designs.</p>
+<h3>Easy Replacement</h3>
+<p>Perfect fit for your existing lamp; quick and simple to swap in case of damage.</p>
 </div>
 </div>
 </div>
@@ -105,13 +111,24 @@ Enhance your Marshmallow collectible with this perfectly 3D-printed top. Smooth 
 <div class="section" style="background:#f3f3f3;">
 <h2>Specifications</h2>
 <p>
-Material: PLA+ Premium<br>
-Height: 60mm<br>
-Width: 50mm<br>
-Weight: 30g<br>
-Finish: Smooth Matte<br>
-Recommended Use: Display, Desk, Collection
+Material: PLA<br>
+Shape: Cylinder<br>
+Diameter: 120mm<br>
+Height: 120mm<br>
+Weight: ~75g<br>
+Purpose: Replacement top for lamp
 </p>
 </div>
+
+<!-- Thumbnail click script -->
+<script>
+const mainImage = document.getElementById('mainImage');
+const thumbnails = document.querySelectorAll('.thumb');
+thumbnails.forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    mainImage.src = thumb.src;
+  });
+});
+</script>
 </body>
 </html>
