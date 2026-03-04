@@ -15,42 +15,34 @@ body { background:#f3f3f3; color:#111; }
 .navbar a { color:white; text-decoration:none; margin-left:35px; font-size:14px; transition:0.3s; }
 .navbar a:hover { color:#00bfff; }
 
-/* Hero Section */
-.hero { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; padding:60px 20px; background:white; gap:40px; }
-.hero-left { flex:1; min-width:300px; display:flex; flex-direction:column; gap:20px; }
-.hero-left img { width:100%; border-radius:15px; object-fit:cover; height:300px; background:#ddd; }
-.hero-right { flex:1; min-width:300px; display:flex; flex-direction:column; justify-content:center; gap:15px; }
-.hero-right .product-title { font-size:36px; font-weight:700; }
-.hero-right .price { font-size:28px; font-weight:bold; color:#00bfff; }
-.hero-right .old-price { text-decoration:line-through; color:gray; margin-left:10px; font-weight:500; }
-.hero-right .stock { margin:10px 0; font-weight:bold; color:green; }
+/* Product Section with Thumbnail List */
+.product-container { display:flex; gap:40px; padding:60px; background:white; border-radius:15px; max-width:1200px; margin:60px auto; flex-wrap:wrap; }
+.thumbnail-list { display:flex; flex-direction:column; gap:15px; }
+.thumbnail-list img { width:80px; height:80px; object-fit:cover; border-radius:10px; cursor:pointer; border:2px solid transparent; transition:0.3s; }
+.thumbnail-list img:hover, .thumbnail-list img.active { border-color:#00bfff; }
+.product-main { flex:1; min-width:300px; display:flex; flex-direction:column; align-items:center; }
+.product-main img { width:100%; max-width:500px; border-radius:15px; object-fit:cover; }
+
+/* Product Info */
+.product-info { flex:1; min-width:300px; display:flex; flex-direction:column; justify-content:flex-start; gap:15px; }
+.product-title { font-size:36px; font-weight:700; }
+.price { font-size:28px; font-weight:bold; color:#00bfff; }
+.old-price { text-decoration:line-through; color:gray; margin-left:10px; font-weight:500; }
+.stock { margin:10px 0; font-weight:bold; color:green; }
 .buy-btn { padding:14px; font-size:16px; background:#00bfff; color:white; border:none; border-radius:12px; cursor:pointer; transition:0.3s; width:fit-content; }
 .buy-btn:hover { background:#009acd; transform:translateY(-2px); }
 
-/* Feature Section */
-.section { padding:80px 60px; text-align:center; }
-.section h2 { font-size:28px; margin-bottom:20px; }
-.section p { max-width:700px; margin:auto; color:#555; line-height:1.7; font-size:16px; }
-.features { display:flex; gap:40px; justify-content:center; margin-top:50px; flex-wrap:wrap; }
-.feature-box { background:white; padding:30px; border-radius:15px; width:260px; box-shadow:0 10px 25px rgba(0,0,0,0.08); text-align:center; }
-.feature-box img { width:100%; height:150px; background:#eee; border-radius:10px; margin-bottom:15px; }
-.feature-box h3 { margin-bottom:10px; font-size:18px; }
-.feature-box p { font-size:14px; color:#555; line-height:1.5; }
-
-/* Scrollable Image Gallery */
-.gallery { display:flex; overflow-x:auto; gap:20px; padding:40px 20px; scroll-behavior:smooth; }
-.gallery img { flex:0 0 auto; width:300px; height:200px; border-radius:15px; background:#ddd; object-fit:cover; }
-
-/* Video Section */
-.videos { display:flex; flex-direction:column; gap:30px; padding:60px 20px; text-align:center; }
-.videos iframe { width:100%; max-width:800px; height:450px; border-radius:15px; background:#000; }
+/* Full-width scroll images */
+.full-scroll { display:flex; flex-direction:column; gap:40px; margin-top:60px; }
+.full-scroll .scroll-item { position:relative; width:100%; min-height:60vh; background:#ddd; display:flex; justify-content:center; align-items:center; border-radius:15px; }
+.full-scroll .scroll-item img { width:90%; max-width:1200px; border-radius:15px; object-fit:cover; }
+.full-scroll .scroll-item .caption { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.5); color:white; padding:10px 20px; border-radius:8px; font-size:16px; text-align:center; }
 
 /* Responsive */
 @media(max-width:1000px) {
-    .hero { flex-direction:column; }
-    .features { flex-direction:column; align-items:center; gap:25px; }
-    .gallery img { width:80%; height:180px; }
-    .videos iframe { height:250px; }
+    .product-container { flex-direction:column; align-items:center; padding:40px; }
+    .thumbnail-list { flex-direction:row; justify-content:center; gap:10px; margin-bottom:20px; }
+    .thumbnail-list img { width:60px; height:60px; }
 }
 </style>
 </head>
@@ -66,13 +58,18 @@ body { background:#f3f3f3; color:#111; }
   </div>
 </div>
 
-<!-- Hero / Main Product -->
-<div class="hero">
-  <div class="hero-left">
-    <img src="" alt="Product Image 1">
-    <img src="" alt="Product Image 2">
+<!-- Product Section -->
+<div class="product-container">
+  <div class="thumbnail-list">
+    <img src="" alt="Thumb 1" class="active" onclick="changeMain(this)">
+    <img src="" alt="Thumb 2" onclick="changeMain(this)">
+    <img src="" alt="Thumb 3" onclick="changeMain(this)">
+    <img src="" alt="Thumb 4" onclick="changeMain(this)">
   </div>
-  <div class="hero-right">
+  <div class="product-main">
+    <img src="" alt="Main Product" id="mainImage">
+  </div>
+  <div class="product-info">
     <div class="product-title">Marshmallow Top</div>
     <div><span class="price">$5.00</span><span class="old-price">$6.00</span></div>
     <div class="stock">In Stock</div>
@@ -83,54 +80,33 @@ body { background:#f3f3f3; color:#111; }
   </div>
 </div>
 
-<!-- Scrollable Image Gallery -->
-<div class="gallery">
-  <img src="" alt="Gallery 1">
-  <img src="" alt="Gallery 2">
-  <img src="" alt="Gallery 3">
-  <img src="" alt="Gallery 4">
-</div>
-
-<!-- Features Section -->
-<div class="section">
-  <h2>Key Features</h2>
-  <div class="features">
-    <div class="feature-box">
-      <img src="" alt="Feature 1">
-      <h3>2x Material Savings</h3>
-      <p>Efficient printing saves material while keeping precision high.</p>
-    </div>
-    <div class="feature-box">
-      <img src="" alt="Feature 2">
-      <h3>Top Mounted Spool Holder</h3>
-      <p>Frees up space and improves stability during printing.</p>
-    </div>
-    <div class="feature-box">
-      <img src="" alt="Feature 3">
-      <h3>Flow Dynamic Calibration</h3>
-      <p>Ensures consistent print quality with every layer.</p>
-    </div>
-    <div class="feature-box">
-      <img src="" alt="Feature 4">
-      <h3>Next-Gen Multicolor</h3>
-      <p>First-ever ACE Gen 2 multi-color printing technology.</p>
-    </div>
+<!-- Full Page Scroll Images -->
+<div class="full-scroll">
+  <div class="scroll-item">
+    <img src="" alt="Full Scroll 1">
+    <div class="caption">2x Material Savings</div>
+  </div>
+  <div class="scroll-item">
+    <img src="" alt="Full Scroll 2">
+    <div class="caption">Top Mounted Spool Holder Frees Space</div>
+  </div>
+  <div class="scroll-item">
+    <img src="" alt="Full Scroll 3">
+    <div class="caption">Flow Dynamic Calibration</div>
+  </div>
+  <div class="scroll-item">
+    <img src="" alt="Full Scroll 4">
+    <div class="caption">Next-Gen Multi-Color Printing</div>
   </div>
 </div>
 
-<!-- Persuasive Story Section -->
-<div class="section" style="background:white;">
-  <h2>Why You’ll Love It</h2>
-  <p>Every Marshmallow Top is crafted with premium PLA+ material for durability and a flawless matte finish. Lightweight and precise, perfect for display, collection, or creative stacking.</p>
-  <p>Engineered for collectors and casual users alike, it combines functionality, style, and cutting-edge 3D printing technology. Swap, stack, or showcase to your heart’s content.</p>
-</div>
-
-<!-- Videos Section -->
-<div class="videos">
-  <h2>See It in Action</h2>
-  <iframe src="" title="Video 1" allowfullscreen></iframe>
-  <iframe src="" title="Video 2" allowfullscreen></iframe>
-</div>
+<script>
+function changeMain(el) {
+  document.querySelectorAll('.thumbnail-list img').forEach(img => img.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('mainImage').src = el.src;
+}
+</script>
 
 </body>
 </html>
