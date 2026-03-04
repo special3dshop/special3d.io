@@ -206,17 +206,18 @@ select {
     margin-top: 20px;
     padding: 12px;
     width: 100%;
-    border: none;
+    border: 1px solid #ccc;        /* subtle border */
     border-radius: 12px;
-    background: linear-gradient(90deg,#00bfff,#0077ff);
-    color: white;
+    background: #f8f8f8;           /* soft neutral background */
+    color: #111;                    /* dark text for readability */
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .buy-btn:hover {
-    transform: scale(1.03);
+    background: #e0e0e0;           /* slight hover change */
+    transform: translateY(-2px);   /* gentle lift */
 }
 
 @media(max-width: 1000px) {
