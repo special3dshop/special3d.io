@@ -1,47 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="favicon.png"> 
-<link rel="shortcut icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Products - Special 3D</title>
 
 <style>
-body {
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f3f3f3;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
 }
 
+body {
+    background: #ffffff;
+    color: #111;
+}
+
+/* NAVBAR (match homepage) */
 .navbar {
-    background: black;
-    padding: 15px 60px;
+    background: rgba(0,0,0,0.9);
+    padding: 20px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.navbar .logo {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
 .navbar a {
     color: white;
     text-decoration: none;
-    margin-left: 30px;
+    margin-left: 35px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: 0.3s;
 }
 
+.navbar a:hover {
+    color: #00bfff;
+}
+
+/* PAGE HEADER */
+.page-header {
+    padding: 120px 80px 60px 80px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 18px;
+}
+
+/* LAYOUT */
 .container {
     display: flex;
-    padding: 40px 60px;
-    gap: 40px;
+    padding: 40px 80px 120px 80px;
+    gap: 60px;
 }
 
+/* SIDEBAR */
 .sidebar {
-    width: 250px;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
+    width: 260px;
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 14px;
     height: fit-content;
 }
 
+.filter-group {
+    margin-bottom: 35px;
+}
+
+.filter-group strong {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* PRODUCTS */
 .products-section {
     flex: 1;
 }
@@ -49,224 +101,117 @@ body {
 .top-bar {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
 }
 
 .product-card {
     background: white;
-    padding: 20px;
-    border-radius: 14px;
-    position: relative;
-    overflow: hidden;
+    padding: 25px;
+    border-radius: 18px;
     transition: 0.35s ease;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.6s forwards;
+    border: 1px solid #eee;
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
 }
 
-.sale-badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: #ff3c3c;
-    color: white;
-    font-size: 12px;
-    padding: 5px 10px;
-    border-radius: 20px;
-}
-
-.stock {
-    margin-top: 8px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.in-stock { color: green; }
-.out-stock { color: red; }
-
+/* IMAGE */
 .product-image {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
     overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-radius: 14px;
+    margin-bottom: 20px;
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: 0.4s ease;
 }
 
 .product-card:hover img {
     transform: scale(1.08);
 }
 
+/* BADGE */
+.sale-badge {
+    display: inline-block;
+    background: #111;
+    color: white;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
+.product-card h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
 .price {
-    font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .old-price {
     text-decoration: line-through;
-    color: gray;
+    color: #999;
     font-size: 14px;
 }
 
+.stock {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.in-stock { color: #1a9c3f; }
+.out-stock { color: #c21c1c; }
+
+/* BUTTON */
 .buy-btn {
-    margin-top: 15px;
-    padding: 10px;
+    margin-top: 20px;
+    padding: 12px;
     width: 100%;
-    background: black;
-    color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#00bfff,#0077ff);
+    color: white;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .buy-btn:hover {
-    background: #333;
+    transform: scale(1.03);
 }
 
-.filter-group {
-    margin-bottom: 25px;
-}
+@media(max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .sidebar {
+        width: 100%;
     }
 }
 </style>
 </head>
-
-<body>
-
-<div class="navbar">
-    <div style="color:white; font-weight:bold;">Special 3D</div>
-    <div>
-        <a href="products.html">Products</a>
-        <a href="parts.html">Parts</a>
-        <a href="support.html">Support</a>
-        <a href="company.html">Company</a>
-    </div>
-</div>
-
-<div class="container">
-
-<div class="sidebar">
-    <div class="filter-group">
-        <strong>Availability</strong>
-        <label><input type="checkbox" id="inStock"> In Stock</label>
-        <label><input type="checkbox" id="outStock"> Out of Stock</label>
-    </div>
-
-    <div class="filter-group">
-        <strong>Price Range</strong>
-        <input type="range" id="priceRange" step="0.01">
-        <div id="priceDisplay"></div>
-    </div>
-</div>
-
-<div class="products-section">
-
-<div class="top-bar">
-    <select id="sortSelect">
-        <option value="featured">Featured</option>
-        <option value="low">Price: Low to High</option>
-        <option value="high">Price: High to Low</option>
-        <option value="az">Name: A–Z</option>
-    </select>
-</div>
-
-<div class="products-grid" id="productsGrid"></div>
-
-</div>
-</div>
-
-<script>
-const products = [
-    {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product1.png", file:"marshmallow.html"},
-    {name:"Marshmallow No Eyes", price:24.99, oldPrice:28.79, stock:true, image:"product2.png", file:"marshmallow-no-eyes.html"},
-    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png", file:"egg.html"},
-];
-
-const grid = document.getElementById("productsGrid");
-const inStockBox = document.getElementById("inStock");
-const outStockBox = document.getElementById("outStock");
-const sortSelect = document.getElementById("sortSelect");
-const priceRange = document.getElementById("priceRange");
-const priceDisplay = document.getElementById("priceDisplay");
-
-const maxPrice = Math.max(...products.map(p=>p.price));
-priceRange.max = maxPrice;
-priceRange.value = maxPrice;
-priceDisplay.innerText = "$0 - $" + maxPrice;
-
-function renderProducts() {
-    let filtered = [...products];
-
-    if (inStockBox.checked && !outStockBox.checked)
-        filtered = filtered.filter(p => p.stock);
-    if (!inStockBox.checked && outStockBox.checked)
-        filtered = filtered.filter(p => !p.stock);
-
-    filtered = filtered.filter(p => p.price <= Number(priceRange.value));
-
-    if (sortSelect.value === "low")
-        filtered.sort((a,b)=>a.price-b.price);
-    if (sortSelect.value === "high")
-        filtered.sort((a,b)=>b.price-a.price);
-    if (sortSelect.value === "az")
-        filtered.sort((a,b)=>a.name.localeCompare(b.name));
-
-    grid.innerHTML = "";
-
-    filtered.forEach((p,index)=>{
-        const discount = (p.oldPrice - p.price).toFixed(2);
-        grid.innerHTML += `
-        <div class="product-card" style="animation-delay:${index*0.05}s">
-            <div class="sale-badge">- $${discount}</div>
-            <div class="product-image">
-                <img src="${p.image}">
-            </div>
-            <h4>${p.name}</h4>
-            <div class="price">$${p.price}</div>
-            <div class="old-price">$${p.oldPrice}</div>
-            <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
-                ${p.stock ? "In Stock" : "Out of Stock"}
-            </div>
-            <button class="buy-btn" onclick="location.href='${p.file}'">View Part</button>
-        </div>
-        `;
-    });
-}
-
-priceRange.addEventListener("input", ()=>{
-    priceDisplay.innerText = "$0 - $" + priceRange.value;
-    renderProducts();
-});
-
-inStockBox.addEventListener("change", renderProducts);
-outStockBox.addEventListener("change", renderProducts);
-sortSelect.addEventListener("change", renderProducts);
-
-renderProducts();
-</script>
-
-</body>
-</html>
