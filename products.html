@@ -19,7 +19,7 @@ body {
     color: #111;
 }
 
-/* NAVBAR (match homepage) */
+/* NAVBAR */
 .navbar {
     background: rgba(0,0,0,0.9);
     padding: 20px 80px;
@@ -47,7 +47,7 @@ body {
     color: #00bfff;
 }
 
-/* PAGE HEADER */
+/* HEADER */
 .page-header {
     padding: 120px 80px 60px 80px;
 }
@@ -74,7 +74,7 @@ body {
     width: 260px;
     background: #f8f8f8;
     padding: 30px;
-    border-radius: 14px;
+    border-radius: 16px;
     height: fit-content;
 }
 
@@ -91,6 +91,11 @@ body {
     display: block;
     margin-bottom: 10px;
     font-size: 14px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
 }
 
 /* PRODUCTS */
@@ -119,14 +124,24 @@ select {
 .product-card {
     background: white;
     padding: 25px;
-    border-radius: 18px;
+    border-radius: 20px;
     transition: 0.35s ease;
     border: 1px solid #eee;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s forwards;
 }
 
 .product-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* IMAGE */
@@ -192,7 +207,7 @@ select {
     padding: 12px;
     width: 100%;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     background: linear-gradient(90deg,#00bfff,#0077ff);
     color: white;
     font-weight: 600;
@@ -215,3 +230,125 @@ select {
 }
 </style>
 </head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">Special 3D</div>
+    <div>
+        <a href="products.html">Products</a>
+        <a href="parts.html">Parts</a>
+        <a href="support.html">Support</a>
+        <a href="company.html">Company</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>Our Collection</h1>
+    <p>Precision 3D printed lighting designed for modern spaces.</p>
+</div>
+
+<div class="container">
+
+<div class="sidebar">
+    <div class="filter-group">
+        <strong>Availability</strong>
+        <label><input type="checkbox" id="inStock"> In Stock</label>
+        <label><input type="checkbox" id="outStock"> Out of Stock</label>
+    </div>
+
+    <div class="filter-group">
+        <strong>Price Range</strong>
+        <input type="range" id="priceRange" step="0.01">
+        <div id="priceDisplay"></div>
+    </div>
+</div>
+
+<div class="products-section">
+
+<div class="top-bar">
+    <select id="sortSelect">
+        <option value="featured">Featured</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="az">Name: A–Z</option>
+    </select>
+</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+</div>
+</div>
+
+<script>
+const products = [
+    {name:"Marshmallow", price:27.99, oldPrice:29.99, stock:true, image:"product1.png", file:"marshmallow.html"},
+    {name:"Marshmallow No Eyes", price:24.99, oldPrice:28.79, stock:true, image:"product2.png", file:"marshmallow-no-eyes.html"},
+    {name:"Egg", price:27.99, oldPrice:29.99, stock:false, image:"product3.png", file:"egg.html"},
+];
+
+const grid = document.getElementById("productsGrid");
+const inStockBox = document.getElementById("inStock");
+const outStockBox = document.getElementById("outStock");
+const sortSelect = document.getElementById("sortSelect");
+const priceRange = document.getElementById("priceRange");
+const priceDisplay = document.getElementById("priceDisplay");
+
+const maxPrice = Math.max(...products.map(p=>p.price));
+priceRange.max = maxPrice;
+priceRange.value = maxPrice;
+priceDisplay.innerText = "$0 - $" + maxPrice;
+
+function renderProducts() {
+    let filtered = [...products];
+
+    if (inStockBox.checked && !outStockBox.checked)
+        filtered = filtered.filter(p => p.stock);
+    if (!inStockBox.checked && outStockBox.checked)
+        filtered = filtered.filter(p => !p.stock);
+
+    filtered = filtered.filter(p => p.price <= Number(priceRange.value));
+
+    if (sortSelect.value === "low")
+        filtered.sort((a,b)=>a.price-b.price);
+    if (sortSelect.value === "high")
+        filtered.sort((a,b)=>b.price-a.price);
+    if (sortSelect.value === "az")
+        filtered.sort((a,b)=>a.name.localeCompare(b.name));
+
+    grid.innerHTML = "";
+
+    filtered.forEach((p,index)=>{
+        const discount = (p.oldPrice - p.price).toFixed(2);
+        grid.innerHTML += `
+        <div class="product-card" style="animation-delay:${index*0.05}s">
+            <div class="sale-badge">Save $${discount}</div>
+            <div class="product-image">
+                <img src="${p.image}">
+            </div>
+            <h4>${p.name}</h4>
+            <div class="price">$${p.price}</div>
+            <div class="old-price">$${p.oldPrice}</div>
+            <div class="stock ${p.stock ? 'in-stock':'out-stock'}">
+                ${p.stock ? "In Stock" : "Out of Stock"}
+            </div>
+            <button class="buy-btn" onclick="location.href='${p.file}'">View Product</button>
+        </div>
+        `;
+    });
+}
+
+priceRange.addEventListener("input", ()=>{
+    priceDisplay.innerText = "$0 - $" + priceRange.value;
+    renderProducts();
+});
+
+inStockBox.addEventListener("change", renderProducts);
+outStockBox.addEventListener("change", renderProducts);
+sortSelect.addEventListener("change", renderProducts);
+
+renderProducts();
+</script>
+
+</body>
+</html>
