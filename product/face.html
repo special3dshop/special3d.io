@@ -21,6 +21,8 @@ body{
     padding:50px;
 }
 
+/* LAYOUT */
+
 .product-container{
     max-width:1400px;
     margin:auto;
@@ -76,10 +78,18 @@ body{
     margin-bottom:15px;
 }
 
+/* STYLE GRID */
+
 .style-grid{
     display:flex;
     gap:15px;
     margin-bottom:30px;
+}
+
+.style-card{
+    text-decoration:none;
+    color:black;
+    display:block;
 }
 
 .style-card img{
@@ -89,7 +99,7 @@ body{
     border-radius:12px;
 }
 
-/* PRICE OPTIONS */
+/* PRICE */
 
 .price-box{
     border:1px solid #ddd;
@@ -160,6 +170,43 @@ body{
     cursor:pointer;
 }
 
+/* BOTTOM DESCRIPTION */
+
+.bottom-description{
+    width:100vw;
+    margin-left:calc(-50vw + 50%);
+    margin-top:80px;
+    background:#0f0f0f;
+    color:white;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.bottom-description h2{
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.bottom-description .tagline{
+    font-size:18px;
+    opacity:0.8;
+    margin-bottom:20px;
+}
+
+.bottom-description p{
+    max-width:800px;
+    margin:0 auto 15px auto;
+    line-height:1.6;
+    color:#ddd;
+}
+
+.ingredients{
+    margin-top:25px;
+    font-size:16px;
+    line-height:1.8;
+    color:#bbb;
+}
+
 /* MOBILE */
 
 @media(max-width:900px){
@@ -180,8 +227,8 @@ body{
         <img id="mainImg" src="../blue background marshmallows.png">
 
         <div class="extra-images">
-            <img src="../green background marshmallows.png" onclick="changeImage(this.src)">
             <img src="../yellow background marshmallows.png" onclick="changeImage(this.src)">
+            <img src="../green background marhsmallow no face.png" onclick="changeImage(this.src)">
         </div>
 
     </div>
@@ -197,54 +244,51 @@ body{
 
         <div class="style-title">Choose Your Style</div>
 
-       <div class="style-grid">
+        <div class="style-grid">
 
-    <!-- FACE -->
-    <a href="/product/face.html" class="style-card">
+            <a href="/product/face.html" class="style-card">
+                <img src="../blue background marshmallows.png">
+                <p>Face</p>
+            </a>
 
-        <img src="../blue background marshmallows.png">
-        <p>Face</p>
+            <a href="/product/blank.html" class="style-card">
+                <img src="../green background marhsmallow no face.png">
+                <p>Blank</p>
+            </a>
 
-    </a>
+            <a href="/product/custom.html" class="style-card">
+                <img src="../yellow background custom marshmallows.png">
+                <p>Custom</p>
+            </a>
 
-    <!-- BLANK -->
-    <a href="/product/blank.html" class="style-card">
-
-        <img src="../green background marhsmallow no face.png">
-        <p>Blank</p>
-
-    </a>
-
-    <!-- CUSTOM -->
-    <a href="/product/custom.html" class="style-card">
-
-        <img src="../yellow background custom marshmallows.png">
-        <p>Custom</p>
-
-    </a>
-
-</div>
+        </div>
 
         <div class="description">
             Custom 3D printed marshmallow-style product. High detail, smooth finish, perfect for gifts and branding.
         </div>
 
-        <!-- PRICE OPTIONS -->
+        <!-- PRICE -->
         <div class="price-box">
 
-            <div class="price-option selected" onclick="selectOption(this, 19.99, 'Troy, MI area')">
+            <div class="price-option selected"
+            onclick="selectOption(this, 19.99, 'Troy, MI area')">
+
                 <div class="left-opt">
                     <div class="dot"><div class="dot-inner"></div></div>
                     <div class="location">Troy, MI area</div>
                 </div>
+
                 <div class="price">$19.99</div>
             </div>
 
-            <div class="price-option" onclick="selectOption(this, 32.00, 'Outside Troy, MI')">
+            <div class="price-option"
+            onclick="selectOption(this, 32.00, 'Outside Troy, MI')">
+
                 <div class="left-opt">
                     <div class="dot"><div class="dot-inner"></div></div>
                     <div class="location">Outside Troy, MI</div>
                 </div>
+
                 <div class="price">$32.00</div>
             </div>
 
@@ -254,6 +298,32 @@ body{
             Add To Cart
         </button>
 
+    </div>
+
+</div>
+
+<!-- BOTTOM DESCRIPTION -->
+<div class="bottom-description">
+
+    <h2>Face Marshmallow</h2>
+
+    <p class="tagline">Classic. Clean. Bold.</p>
+
+    <p>
+        A clean, high-detail 3D printed marshmallow-style product designed for display, gifts, and branding.
+        Smooth finish, crisp shape, and modern aesthetic inspired by minimal product design.
+    </p>
+
+    <p>
+        Due to demand and production logistics, please allow up to 5 business days for shipping.
+    </p>
+
+    <div class="ingredients">
+        <strong>Only four ingredients:</strong><br>
+        Water<br>
+        PLA Polymer<br>
+        Design File<br>
+        Print Time
     </div>
 
 </div>
