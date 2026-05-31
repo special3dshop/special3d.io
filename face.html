@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face Marshmallow - Special3D</title>
+
+<link rel="icon" type="image/png" href="../special 3d logo.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fff;
+    padding:50px;
+}
+
+.product-container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+.main-image img{
+    width:100%;
+    border-radius:20px;
+}
+
+.product-info h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.rating{
+    margin-bottom:25px;
+    color:#f5b301;
+    font-size:20px;
+}
+
+.rating span{
+    color:#666;
+    margin-left:10px;
+    font-size:16px;
+}
+
+.style-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.style-grid{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.style-card{
+    cursor:pointer;
+    text-align:center;
+}
+
+.style-card img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:12px;
+    border:3px solid transparent;
+    transition:.2s;
+}
+
+.style-card img:hover{
+    border-color:#111;
+}
+
+.style-card p{
+    margin-top:8px;
+}
+
+.description{
+    margin-bottom:30px;
+    line-height:1.7;
+    color:#444;
+}
+
+.price-box{
+    border:1px solid #ddd;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.price-option{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+}
+
+.price-option:first-child{
+    border-bottom:1px solid #eee;
+}
+
+.location{
+    font-weight:bold;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.cart-btn{
+    width:100%;
+    border:none;
+    background:black;
+    color:white;
+    padding:18px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.cart-btn:hover{
+    opacity:.9;
+}
+
+@media(max-width:900px){
+
+    body{
+        padding:20px;
+    }
+
+    .product-container{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="product-container">
+
+    <!-- LEFT SIDE -->
+
+    <div class="main-image">
+
+        <img src="../blue background marshmallows.png" alt="Face Marshmallow">
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="product-info">
+
+        <h1>Face Marshmallow</h1>
+
+        <div class="rating">
+            ★★★★★
+            <span>4.9 (127 Reviews)</span>
+        </div>
+
+        <div class="style-title">
+            Choose Your Style
+        </div>
+
+        <div class="style-grid">
+
+            <div class="style-card">
+                <img src="../blue background marshmallows.png">
+                <p>Classic</p>
+            </div>
+
+            <div class="style-card">
+                <img src="../green background marhsmallow no face.png">
+                <p>Blank</p>
+            </div>
+
+            <div class="style-card">
+                <img src="../yellow background custom marshmallows.png">
+                <p>Custom</p>
+            </div>
+
+        </div>
+
+        <div class="description">
+
+            Create personalized marshmallows with custom face printing.
+            Perfect for birthdays, parties, gifts, events, and special occasions.
+            High-quality edible printing with crisp detail and vibrant colors.
+
+        </div>
+
+        <div class="price-box">
+
+            <div class="price-option">
+                <div class="location">
+                    Around Troy, MI
+                </div>
+
+                <div class="price">
+                    $19.99
+                </div>
+            </div>
+
+            <div class="price-option">
+                <div class="location">
+                    Beyond Troy, MI
+                </div>
+
+                <div class="price">
+                    $32.00
+                </div>
+            </div>
+
+        </div>
+
+        <button class="cart-btn">
+            Add To Cart
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>
