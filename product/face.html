@@ -7,9 +7,6 @@
 
 <link rel="icon" type="image/png" href="../special 3d logo.png">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
 
 *{
@@ -32,7 +29,7 @@ body{
     gap:60px;
 }
 
-/* LEFT SIDE */
+/* LEFT */
 
 .main-image img{
     width:100%;
@@ -52,14 +49,9 @@ body{
     object-fit:cover;
     border-radius:12px;
     cursor:pointer;
-    transition:0.2s;
 }
 
-.extra-images img:hover{
-    transform:scale(1.02);
-}
-
-/* RIGHT SIDE */
+/* RIGHT */
 
 .product-info h1{
     font-size:42px;
@@ -90,32 +82,14 @@ body{
     margin-bottom:30px;
 }
 
-.style-card{
-    text-align:center;
-    cursor:pointer;
-}
-
 .style-card img{
     width:110px;
     height:110px;
     object-fit:cover;
     border-radius:12px;
-    border:2px solid transparent;
 }
 
-.style-card img:hover{
-    border-color:black;
-}
-
-.style-card p{
-    margin-top:8px;
-}
-
-.description{
-    margin-bottom:30px;
-    line-height:1.6;
-    color:#444;
-}
+/* PRICE OPTIONS */
 
 .price-box{
     border:1px solid #ddd;
@@ -126,12 +100,42 @@ body{
 
 .price-option{
     display:flex;
+    align-items:center;
     justify-content:space-between;
     padding:12px 0;
+    cursor:pointer;
 }
 
 .price-option:first-child{
     border-bottom:1px solid #eee;
+}
+
+.left-opt{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    border:2px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.dot-inner{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:black;
+    display:none;
+}
+
+.price-option.selected .dot-inner{
+    display:block;
 }
 
 .location{
@@ -142,6 +146,8 @@ body{
     font-size:22px;
     font-weight:bold;
 }
+
+/* BUTTON */
 
 .cart-btn{
     width:100%;
@@ -154,20 +160,11 @@ body{
     cursor:pointer;
 }
 
-.cart-btn:hover{
-    opacity:0.9;
-}
-
 /* MOBILE */
 
 @media(max-width:900px){
-    body{
-        padding:20px;
-    }
-
-    .product-container{
-        grid-template-columns:1fr;
-    }
+    body{padding:20px;}
+    .product-container{grid-template-columns:1fr;}
 }
 
 </style>
@@ -177,43 +174,30 @@ body{
 
 <div class="product-container">
 
-    <!-- LEFT SIDE -->
+    <!-- LEFT -->
     <div class="main-image">
 
-        <img id="mainImg"
-        src="../blue background marshmallows.png"
-        alt="Face Product">
+        <img id="mainImg" src="../blue background marshmallows.png">
 
         <div class="extra-images">
-
-            <img src="../face2.png"
-            onclick="changeImage(this.src)"
-            alt="View 2">
-
-            <img src="../face3.png"
-            onclick="changeImage(this.src)"
-            alt="View 3">
-
+            <img src="../face2.png" onclick="changeImage(this.src)">
+            <img src="../face3.png" onclick="changeImage(this.src)">
         </div>
 
     </div>
 
-    <!-- RIGHT SIDE -->
+    <!-- RIGHT -->
     <div class="product-info">
 
         <h1>Face Marshmallow</h1>
 
         <div class="rating">
-            ★★★★★
-            <span>4.9 (127 reviews)</span>
+            ★★★★★ <span>4.9 (127 reviews)</span>
         </div>
 
-        <div class="style-title">
-            Choose Your Style
-        </div>
+        <div class="style-title">Choose Your Style</div>
 
         <div class="style-grid">
-
             <div class="style-card">
                 <img src="../blue background marshmallows.png">
                 <p>Face</p>
@@ -228,30 +212,34 @@ body{
                 <img src="../yellow background custom marshmallows.png">
                 <p>Custom</p>
             </div>
-
         </div>
 
         <div class="description">
-            Custom marshmallow-style 3D printed products designed for gifts,
-            branding, and creative displays. High detail, smooth finish, and
-            fully customizable designs.
+            Custom 3D printed marshmallow-style product. High detail, smooth finish, perfect for gifts and branding.
         </div>
 
+        <!-- PRICE OPTIONS -->
         <div class="price-box">
 
-            <div class="price-option">
-                <div class="location">Troy, MI area</div>
+            <div class="price-option selected" onclick="selectOption(this, 19.99, 'Troy, MI area')">
+                <div class="left-opt">
+                    <div class="dot"><div class="dot-inner"></div></div>
+                    <div class="location">Troy, MI area</div>
+                </div>
                 <div class="price">$19.99</div>
             </div>
 
-            <div class="price-option">
-                <div class="location">Outside Troy, MI</div>
+            <div class="price-option" onclick="selectOption(this, 32.00, 'Outside Troy, MI')">
+                <div class="left-opt">
+                    <div class="dot"><div class="dot-inner"></div></div>
+                    <div class="location">Outside Troy, MI</div>
+                </div>
                 <div class="price">$32.00</div>
             </div>
 
         </div>
 
-        <button class="cart-btn">
+        <button class="cart-btn" onclick="addToCart()">
             Add To Cart
         </button>
 
@@ -263,6 +251,35 @@ body{
 
 function changeImage(src){
     document.getElementById("mainImg").src = src;
+}
+
+let selectedPrice = 19.99;
+let selectedLocation = "Troy, MI area";
+
+function selectOption(el, price, location){
+
+    document.querySelectorAll(".price-option")
+    .forEach(opt => opt.classList.remove("selected"));
+
+    el.classList.add("selected");
+
+    selectedPrice = price;
+    selectedLocation = location;
+}
+
+function addToCart(){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        product: "Face Marshmallow",
+        price: selectedPrice,
+        location: selectedLocation
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Added to cart!");
 }
 
 </script>
