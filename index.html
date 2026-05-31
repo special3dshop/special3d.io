@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special3D</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 50px;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    background:white;
+    z-index:1000;
+}
+
+.left-nav,
+.right-nav{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:32px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.nav-link{
+    text-decoration:none;
+    color:black;
+    font-weight:500;
+    cursor:pointer;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:30px;
+    left:0;
+    min-width:180px;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    border-radius:10px;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px;
+    text-decoration:none;
+    color:black;
+}
+
+.dropdown-content a:hover{
+    background:#f3f3f3;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+/* ICONS */
+
+.icon{
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1400px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.hero-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.hero-card img{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.hero-card:hover img{
+    transform:scale(1.05);
+}
+
+.hero-text{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    text-shadow:0 2px 10px black;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .logo{
+        position:static;
+        transform:none;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+        height:auto;
+        padding:20px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+    <div class="left-nav">
+
+        <div class="dropdown">
+            <span class="nav-link">
+                Shop ▼
+            </span>
+
+            <div class="dropdown-content">
+
+                <!-- Replace links later -->
+
+                <a href="#">3D Prints</a>
+                <a href="#">Custom Orders</a>
+                <a href="#">Accessories</a>
+
+            </div>
+        </div>
+
+        <a class="nav-link" href="#">
+            Merch
+        </a>
+
+    </div>
+
+    <div class="logo">
+        Special3D
+    </div>
+
+    <div class="right-nav">
+
+        <!-- Replace links later -->
+
+        <a href="#">
+            <i class="fa-regular fa-user icon"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-cart-shopping icon"></i>
+        </a>
+
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-grid">
+
+        <div class="hero-card">
+
+            <!-- Replace image -->
+
+            <img src="https://picsum.photos/700/900?1">
+
+            <div class="hero-text">
+                Custom Prints
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <!-- Replace image -->
+
+            <img src="https://picsum.photos/700/900?2">
+
+            <div class="hero-text">
+                Engineering Parts
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <!-- Replace image -->
+
+            <img src="https://picsum.photos/700/900?3">
+
+            <div class="hero-text">
+                Merch
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
