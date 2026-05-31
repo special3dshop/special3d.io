@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Special3D</title>
 
-<!-- Browser Tab Icon -->
-<link rel="icon" type="image/png" href="special 3d logo.png">
+<link rel="icon" type="image/png" href="special%203d%20logo.png">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
@@ -20,11 +20,13 @@
 }
 
 body{
-    background:#fff;
+    background:#ffffff;
     color:#111;
 }
 
+/* ========================= */
 /* NAVBAR */
+/* ========================= */
 
 .navbar{
     height:80px;
@@ -53,6 +55,7 @@ body{
     font-size:34px;
     font-weight:700;
     letter-spacing:2px;
+    cursor:pointer;
 }
 
 .nav-link{
@@ -62,7 +65,9 @@ body{
     cursor:pointer;
 }
 
-/* SHOP DROPDOWN */
+/* ========================= */
+/* MEGA MENU */
+/* ========================= */
 
 .dropdown{
     position:relative;
@@ -70,15 +75,23 @@ body{
 
 .mega-menu{
     display:none;
+
     position:absolute;
     top:45px;
     left:0;
+
     width:900px;
+
     background:white;
+
     padding:20px;
+
     border-radius:15px;
+
     box-shadow:0 15px 40px rgba(0,0,0,0.15);
+
     grid-template-columns:repeat(3,1fr);
+
     gap:20px;
 }
 
@@ -110,7 +123,9 @@ body{
     font-weight:600;
 }
 
+/* ========================= */
 /* ICONS */
+/* ========================= */
 
 .icon{
     font-size:22px;
@@ -122,7 +137,9 @@ body{
     transform:scale(1.1);
 }
 
+/* ========================= */
 /* HERO */
+/* ========================= */
 
 .hero{
     max-width:1500px;
@@ -140,7 +157,7 @@ body{
     position:relative;
     overflow:hidden;
     border-radius:20px;
-    text-decoration:none;
+    cursor:pointer;
 }
 
 .hero-card img{
@@ -158,13 +175,18 @@ body{
     position:absolute;
     bottom:25px;
     left:25px;
+
     color:white;
+
     font-size:34px;
     font-weight:bold;
+
     text-shadow:0 3px 10px rgba(0,0,0,0.8);
 }
 
+/* ========================= */
 /* MOBILE */
+/* ========================= */
 
 @media (max-width:1000px){
 
@@ -190,6 +212,10 @@ body{
 </head>
 <body>
 
+<!-- ====================== -->
+<!-- NAVBAR -->
+<!-- ====================== -->
+
 <nav class="navbar">
 
     <div class="left-nav">
@@ -202,26 +228,47 @@ body{
 
             <div class="mega-menu">
 
-                <a href="/product/face.html" class="menu-card">
-                    <img src="blue background marshmallows.png" alt="Face">
-                    <div class="menu-title">Face</div>
+                <!-- FACE -->
+
+                <a href="FACE_LINK_HERE" class="menu-card">
+
+                    <img src="images/face.jpg" alt="Face">
+
+                    <div class="menu-title">
+                        Face
+                    </div>
+
                 </a>
 
-                <a href="/product/blank.html" class="menu-card">
-                    <img src="green background marhsmallow no face.png" alt="Blank">
-                    <div class="menu-title">Blank</div>
+                <!-- BLANK -->
+
+                <a href="BLANK_LINK_HERE" class="menu-card">
+
+                    <img src="images/blank.jpg" alt="Blank">
+
+                    <div class="menu-title">
+                        Blank
+                    </div>
+
                 </a>
 
-                <a href="/product/custom.html" class="menu-card">
-                    <img src="yellow background custom marshmallows.png" alt="Custom">
-                    <div class="menu-title">Custom</div>
+                <!-- CUSTOM -->
+
+                <a href="CUSTOM_LINK_HERE" class="menu-card">
+
+                    <img src="images/custom.jpg" alt="Custom">
+
+                    <div class="menu-title">
+                        Custom
+                    </div>
+
                 </a>
 
             </div>
 
         </div>
 
-        <a href="#" class="nav-link">
+        <a href="MERCH_LINK_HERE" class="nav-link">
             Merch
         </a>
 
@@ -233,11 +280,11 @@ body{
 
     <div class="right-nav">
 
-        <a href="#">
+        <a href="LOGIN_LINK_HERE">
             <i class="fa-regular fa-user icon"></i>
         </a>
 
-        <a href="#">
+        <a href="CART_LINK_HERE">
             <i class="fa-solid fa-cart-shopping icon"></i>
         </a>
 
@@ -245,23 +292,42 @@ body{
 
 </nav>
 
+<!-- ====================== -->
+<!-- HERO SECTION -->
+<!-- ====================== -->
+
 <section class="hero">
 
     <div class="hero-grid">
 
-        <a href="/product/face.html" class="menu-card">
-            <img src="blue background marshmallows.png" alt="Face">
-            <div class="hero-text">Face</div>
+        <a href="FACE_LINK_HERE" class="hero-card">
+
+            <img src="images/face.jpg" alt="Face">
+
+            <div class="hero-text">
+                Face
+            </div>
+
         </a>
 
-        <a href="/product/blank.html" class="menu-card">
-            <img src="green background marhsmallow no face.png" alt="Blank">
-            <div class="hero-text">Blank</div>
+        <a href="BLANK_LINK_HERE" class="hero-card">
+
+            <img src="images/blank.jpg" alt="Blank">
+
+            <div class="hero-text">
+                Blank
+            </div>
+
         </a>
 
-        <a href="/product/custom.html" class="menu-card">
-            <img src="yellow background custom marshmallows.png" alt="Custom">
-            <div class="hero-text">Custom</div>
+        <a href="CUSTOM_LINK_HERE" class="hero-card">
+
+            <img src="images/custom.jpg" alt="Custom">
+
+            <div class="hero-text">
+                Custom
+            </div>
+
         </a>
 
     </div>
