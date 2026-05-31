@@ -176,10 +176,13 @@ body{
     width:100vw;
     margin-left:calc(-50vw + 50%);
     margin-top:80px;
-    background:#0f0f0f;
-    color:white;
     padding:60px 20px;
     text-align:center;
+    color:white;
+}
+
+.bottom-description.blue{
+    background:#0b3d91;
 }
 
 .bottom-description h2{
@@ -189,7 +192,7 @@ body{
 
 .bottom-description .tagline{
     font-size:18px;
-    opacity:0.8;
+    opacity:0.9;
     margin-bottom:20px;
 }
 
@@ -197,14 +200,28 @@ body{
     max-width:800px;
     margin:0 auto 15px auto;
     line-height:1.6;
-    color:#ddd;
+    color:#dbe9ff;
 }
 
-.ingredients{
-    margin-top:25px;
-    font-size:16px;
-    line-height:1.8;
-    color:#bbb;
+.info-box{
+    margin-top:40px;
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.info-block h3{
+    font-size:22px;
+    margin-bottom:8px;
+    color:white;
+}
+
+.info-block p{
+    color:#dbe9ff;
+    line-height:1.6;
 }
 
 /* MOBILE */
@@ -264,10 +281,10 @@ body{
         </div>
 
         <div class="description">
-            Custom 3D printed marshmallow-style product. High detail, smooth finish, perfect for gifts and branding.
+            Custom 3D printed marshmallow-style product. Soft glow aesthetic lamp design, perfect for cozy rooms and desks.
         </div>
 
-        <!-- PRICE -->
+        <!-- PRICE BOX -->
         <div class="price-box">
 
             <div class="price-option selected"
@@ -279,6 +296,7 @@ body{
                 </div>
 
                 <div class="price">$19.99</div>
+
             </div>
 
             <div class="price-option"
@@ -290,6 +308,7 @@ body{
                 </div>
 
                 <div class="price">$32.00</div>
+
             </div>
 
         </div>
@@ -302,28 +321,39 @@ body{
 
 </div>
 
-<!-- BOTTOM DESCRIPTION -->
-<div class="bottom-description">
+<!-- BOTTOM BLUE DESCRIPTION -->
+<div class="bottom-description blue">
 
-    <h2>Face Marshmallow</h2>
+    <h2>Face Marshmallow Lamp</h2>
 
-    <p class="tagline">Classic. Clean. Bold.</p>
+    <p class="tagline">Soft Glow. Cozy Feel. Clean Design.</p>
 
     <p>
-        A clean, high-detail 3D printed marshmallow-style product designed for display, gifts, and branding.
-        Smooth finish, crisp shape, and modern aesthetic inspired by minimal product design.
+        A cute marshmallow-style lamp designed to bring warmth and personality to any space.
+        Soft ambient lighting, smooth finish, and minimal design made for desks, bedrooms, and creative setups.
     </p>
 
     <p>
         Due to demand and production logistics, please allow up to 5 business days for shipping.
     </p>
 
-    <div class="ingredients">
-        <strong>Only four ingredients:</strong><br>
-        Water<br>
-        PLA Polymer<br>
-        Design File<br>
-        Print Time
+    <div class="info-box">
+
+        <div class="info-block">
+            <h3>Soft Ambient Glow</h3>
+            <p>Gentle lighting designed to create a calm cozy atmosphere without being harsh.</p>
+        </div>
+
+        <div class="info-block">
+            <h3>Marshmallow-Inspired Design</h3>
+            <p>Soft rounded aesthetic that fits perfectly on desks, nightstands, or shelves.</p>
+        </div>
+
+        <div class="info-block">
+            <h3>Low Energy Use</h3>
+            <p>Designed for long use with efficient power consumption for night lighting.</p>
+        </div>
+
     </div>
 
 </div>
@@ -353,7 +383,7 @@ function addToCart(){
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     cart.push({
-        product: "Face Marshmallow",
+        product: "Face Marshmallow Lamp",
         price: selectedPrice,
         location: selectedLocation
     });
