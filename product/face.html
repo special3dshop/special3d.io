@@ -177,7 +177,7 @@ body{
     margin-left:calc(-50vw + 50%);
     margin-top:80px;
     padding:60px 20px;
-    text-align:center;
+    text-align:left;
     color:white;
 }
 
@@ -188,12 +188,14 @@ body{
 .bottom-description h2{
     font-size:36px;
     margin-bottom:10px;
+    text-align:center;
 }
 
 .bottom-description .tagline{
     font-size:18px;
     opacity:0.9;
     margin-bottom:20px;
+    text-align:center;
 }
 
 .bottom-description p{
@@ -203,6 +205,8 @@ body{
     color:#dbe9ff;
 }
 
+/* INFO BOX */
+
 .info-box{
     margin-top:40px;
     max-width:900px;
@@ -211,6 +215,12 @@ body{
     display:flex;
     flex-direction:column;
     gap:25px;
+}
+
+.info-block{
+    background: rgba(255,255,255,0.06);
+    padding:20px;
+    border-radius:12px;
 }
 
 .info-block h3{
@@ -256,7 +266,7 @@ body{
         <h1>Face Marshmallow</h1>
 
         <div class="rating">
-            ★★★★★ <span>4.9 (127 reviews)</span>
+            ★★★★★ <span>Handmade quality product</span>
         </div>
 
         <div class="style-title">Choose Your Style</div>
@@ -321,37 +331,42 @@ body{
 
 </div>
 
-<!-- BOTTOM BLUE DESCRIPTION -->
+<!-- BOTTOM SECTION -->
 <div class="bottom-description blue">
 
     <h2>Face Marshmallow Lamp</h2>
-
-    <p class="tagline">Soft Glow. Cozy Feel. Clean Design.</p>
-
-    <p>
-        A cute marshmallow-style lamp designed to bring warmth and personality to any space.
-        Soft ambient lighting, smooth finish, and minimal design made for desks, bedrooms, and creative setups.
-    </p>
-
-    <p>
-        Due to demand and production logistics, please allow up to 5 business days for shipping.
-    </p>
+    <p class="tagline">Soft Glow. Cozy Feel. Minimal Design.</p>
 
     <div class="info-box">
 
         <div class="info-block">
-            <h3>Soft Ambient Glow</h3>
-            <p>Gentle lighting designed to create a calm cozy atmosphere without being harsh.</p>
+            <h3>About the Product</h3>
+            <p>
+                A marshmallow-inspired desk lamp designed for ambient lighting and aesthetic setups.
+                Built for bedrooms, desks, and creative spaces where soft light matters.
+            </p>
         </div>
 
         <div class="info-block">
-            <h3>Marshmallow-Inspired Design</h3>
-            <p>Soft rounded aesthetic that fits perfectly on desks, nightstands, or shelves.</p>
+            <h3>Lighting Experience</h3>
+            <p>
+                Emits a soft, diffused glow that reduces harsh shadows and creates a calm environment.
+                Ideal for night use or background lighting.
+            </p>
         </div>
 
         <div class="info-block">
-            <h3>Low Energy Use</h3>
-            <p>Designed for long use with efficient power consumption for night lighting.</p>
+            <h3>Build & Efficiency</h3>
+            <p>
+                Lightweight design with low power consumption, optimized for long-term daily use.
+            </p>
+        </div>
+
+        <div class="info-block">
+            <h3>Shipping</h3>
+            <p>
+                Production time: up to 5 business days before shipping due to assembly process.
+            </p>
         </div>
 
     </div>
