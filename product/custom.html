@@ -1,1 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face - Special3D</title>
 
+<link rel="icon" type="image/png" href="../special 3d logo.png">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fff;
+    padding:50px;
+}
+
+/* LAYOUT */
+
+.product-container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+/* LEFT */
+
+.main-image img{
+    width:100%;
+    border-radius:20px;
+}
+
+.extra-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+}
+
+.extra-images img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* RIGHT */
+
+.product-info h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.rating{
+    margin-bottom:25px;
+    color:#f5b301;
+    font-size:20px;
+}
+
+.rating span{
+    color:#666;
+    margin-left:10px;
+    font-size:16px;
+}
+
+.style-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.style-grid{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.style-card{
+    text-decoration:none;
+    color:black;
+    display:block;
+}
+
+.style-card img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.style-card p{
+    text-align:center;
+    margin-top:8px;
+}
+
+/* PRICE */
+
+.price-box{
+    border:1px solid #ddd;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.price-option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 0;
+    cursor:pointer;
+}
+
+.price-option:first-child{
+    border-bottom:1px solid #eee;
+}
+
+.left-opt{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    border:2px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.dot-inner{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:black;
+    display:none;
+}
+
+.price-option.selected .dot-inner{
+    display:block;
+}
+
+.location{
+    font-weight:bold;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* BUTTON */
+
+.cart-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    background:black;
+    color:white;
+    font-size:18px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+/* DESCRIPTION */
+
+.description{
+    margin-bottom:25px;
+    color:#555;
+    line-height:1.6;
+}
+
+/* BOTTOM */
+
+.bottom-description{
+    width:100vw;
+    margin-left:calc(-50vw + 50%);
+    margin-top:80px;
+    padding:60px 20px;
+    color:white;
+}
+
+.bottom-description.blue{
+    background:#0b3d91;
+}
+
+.bottom-description h2{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.tagline{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.info-box{
+    max-width:900px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.info-block{
+    background:rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:14px;
+}
+
+.info-block h3{
+    margin-bottom:8px;
+}
+
+.info-block p{
+    color:#dbe9ff;
+    line-height:1.6;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    border-top:1px solid #eee;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+body{
+    padding:20px;
+}
+
+.product-container{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="product-container">
+
+<div class="main-image">
+
+<img id="mainImg"
+src="../blue background marshmallows.png">
+
+<div class="extra-images">
+
+<img src="../yellow background marshmallows.png">
+
+<img src="../green background marshmallows.png">
+
+</div>
+
+</div>
+
+<div class="product-info">
+
+<h1>Face Marshmallow</h1>
+
+<div class="rating">
+★★★★★
+<span>Handmade quality product</span>
+</div>
+
+<div class="style-title">
+Choose Your Style
+</div>
+
+<div class="style-grid">
+
+<a href="/product/face.html"
+class="style-card">
+
+<img src="../blue background marshmallows.png">
+
+<p>Face</p>
+
+</a>
+
+
+<a href="/product/blank.html"
+class="style-card">
+
+<!-- UPDATED IMAGE -->
+<img src="..green background marhsmallow no face.png">
+
+<p>Blank</p>
+
+</a>
+
+
+<a href="/product/custom.html"
+class="style-card">
+
+<img src="../yellow background custom marshmallows.png">
+
+<p>Custom</p>
+
+</a>
+
+</div>
+
+<div class="description">
+
+Custom 3D printed marshmallow-style product.
+Soft glow aesthetic lamp design,
+perfect for cozy rooms and desks.
+
+</div>
+
+<div class="price-box">
+
+<div class="price-option selected"
+onclick="selectOption(this,19.99,'Troy, MI area')">
+
+<div class="left-opt">
+
+<div class="dot">
+
+<div class="dot-inner"></div>
+
+</div>
+
+<div class="location">
+
+Troy, MI area
+
+</div>
+
+</div>
+
+<div class="price">
+
+$19.99
+
+</div>
+
+</div>
+
+<div class="price-option"
+onclick="selectOption(this,32,'Outside Troy, MI')">
+
+<div class="left-opt">
+
+<div class="dot">
+
+<div class="dot-inner"></div>
+
+</div>
+
+<div class="location">
+
+Outside Troy, MI
+
+</div>
+
+</div>
+
+<div class="price">
+
+$32.00
+
+</div>
+
+</div>
+
+</div>
+
+<button
+class="cart-btn"
+onclick="addToCart()">
+
+Add To Cart
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="bottom-description blue">
+
+<h2>
+Face Marshmallow Lamp
+</h2>
+
+<p class="tagline">
+
+Soft Glow. Cozy Feel.
+Minimal Design.
+
+</p>
+
+<div class="info-box">
+
+<div class="info-block">
+
+<h3>
+
+About the Product
+
+</h3>
+
+<p>
+
+A marshmallow-inspired
+desk lamp designed
+for ambient lighting.
+
+</p>
+
+</div>
+
+<div class="info-block">
+
+<h3>
+
+Lighting Experience
+
+</h3>
+
+<p>
+
+Soft diffused glow.
+
+</p>
+
+</div>
+
+<div class="info-block">
+
+<h3>
+
+Build & Efficiency
+
+</h3>
+
+<p>
+
+Low power usage.
+
+</p>
+
+</div>
+
+<div class="info-block">
+
+<h3>
+
+Shipping
+
+</h3>
+
+<p>
+
+Up to 5 business days.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+© 2026 Special3D.
+All rights reserved.
+
+</footer>
+
+<script>
+
+let selectedPrice=19.99;
+
+let selectedLocation=
+"Troy, MI area";
+
+function selectOption(
+el,
+price,
+location
+){
+
+document
+.querySelectorAll(
+".price-option"
+)
+
+.forEach(
+x=>
+x.classList
+.remove(
+"selected"
+)
+);
+
+el.classList
+.add(
+"selected"
+);
+
+selectedPrice=
+price;
+
+selectedLocation=
+location;
+
+}
+
+function addToCart(){
+
+let cart=
+JSON.parse(
+localStorage
+.getItem(
+"cart"
+)
+)
+||
+[];
+
+cart.push({
+
+product:
+"Face Marshmallow Lamp",
+
+price:
+selectedPrice,
+
+location:
+selectedLocation
+
+});
+
+localStorage
+.setItem(
+"cart",
+JSON.stringify(
+cart
+)
+);
+
+alert(
+"Added to cart!"
+);
+
+}
+
+</script>
+
+</body>
+</html>
