@@ -50,7 +50,6 @@ body{
     height:220px;
     object-fit:cover;
     border-radius:12px;
-    cursor:pointer;
 }
 
 /* RIGHT */
@@ -250,14 +249,12 @@ body{
 
     <!-- LEFT -->
     <div class="main-image">
-
         <img id="mainImg" src="../blue background marshmallows.png">
 
         <div class="extra-images">
-            <img src="../yellow background marshmallows.png" onclick="changeImage(this.src)">
-            <img src="../green background marhsmallow no face.png" onclick="changeImage(this.src)">
+            <img src="../yellow background marshmallows.png">
+            <img src="../green background marshmallows.png">
         </div>
-
     </div>
 
     <!-- RIGHT -->
@@ -279,7 +276,7 @@ body{
             </a>
 
             <a href="/product/blank.html" class="style-card">
-                <img src="../green background marhsmallow no face.png">
+                <img src="../green background marshmallows.png">
                 <p>Blank</p>
             </a>
 
@@ -331,7 +328,7 @@ body{
 
 </div>
 
-<!-- BOTTOM SECTION -->
+<!-- BOTTOM -->
 <div class="bottom-description blue">
 
     <h2>Face Marshmallow Lamp</h2>
@@ -341,32 +338,22 @@ body{
 
         <div class="info-block">
             <h3>About the Product</h3>
-            <p>
-                A marshmallow-inspired desk lamp designed for ambient lighting and aesthetic setups.
-                Built for bedrooms, desks, and creative spaces where soft light matters.
-            </p>
+            <p>A marshmallow-inspired desk lamp designed for ambient lighting and aesthetic setups.</p>
         </div>
 
         <div class="info-block">
             <h3>Lighting Experience</h3>
-            <p>
-                Emits a soft, diffused glow that reduces harsh shadows and creates a calm environment.
-                Ideal for night use or background lighting.
-            </p>
+            <p>Soft diffused glow for calm environments and night use.</p>
         </div>
 
         <div class="info-block">
             <h3>Build & Efficiency</h3>
-            <p>
-                Lightweight design with low power consumption, optimized for long-term daily use.
-            </p>
+            <p>Low power usage and optimized for long-term daily use.</p>
         </div>
 
         <div class="info-block">
             <h3>Shipping</h3>
-            <p>
-                Production time: up to 5 business days before shipping due to assembly process.
-            </p>
+            <p>Up to 5 business days production time before shipping.</p>
         </div>
 
     </div>
@@ -374,10 +361,6 @@ body{
 </div>
 
 <script>
-
-function changeImage(src){
-    document.getElementById("mainImg").src = src;
-}
 
 let selectedPrice = 19.99;
 let selectedLocation = "Troy, MI area";
