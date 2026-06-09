@@ -9,7 +9,6 @@
 
 <style>
 
-/* (your full CSS unchanged) */
 *{
     margin:0;
     padding:0;
@@ -168,22 +167,46 @@ body{
     cursor:not-allowed;
 }
 
-.description{
-    margin-bottom:25px;
-    color:#555;
-    line-height:1.6;
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
 }
 
-.bottom-description{
-    width:100vw;
-    margin-left:calc(-50vw + 50%);
-    margin-top:80px;
-    padding:60px 20px;
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    width:90%;
+    max-width:520px;
+    text-align:center;
+}
+
+.platform-btn{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.gmail{
+    background:#fff;
+    border:1px solid #ddd;
+}
+
+.outlook{
+    background:#0078D4;
     color:white;
-}
-
-.bottom-description.blue{
-    background:#0b3d91;
 }
 
 .footer{
@@ -206,27 +229,21 @@ body{padding:20px;}
 <div class="product-container">
 
 <div class="main-image">
-
 <img src="../green background marhsmallow no face.png">
 
 <div class="extra-images">
-<img src="../yellow background marhsmallow no face.png">
-<img src="../blue background marhsmallow no face.png">
+<img src="../green background marhsmallow no face.png">
+<img src="../yellow background marshmallows.png">
 </div>
-
 </div>
 
 <div class="product-info">
 
 <h1>Blank Marshmallow</h1>
 
-<div class="rating">
-★★★★★ <span>Handmade quality product</span>
-</div>
+<div class="rating">★★★★★ <span>Handmade quality product</span></div>
 
-<div id="stockBox" style="margin-bottom:15px;font-weight:bold;">
-Loading stock...
-</div>
+<div id="stockBox" style="margin-bottom:15px;font-weight:bold;">Loading stock...</div>
 
 <div class="style-title">Choose Your Style</div>
 
@@ -251,112 +268,105 @@ Loading stock...
 
 <div class="description">
 Custom 3D printed marshmallow-style product.
-Soft glow aesthetic lamp design,
-perfect for cozy rooms and desks.
+Soft glow aesthetic lamp design, perfect for cozy rooms.
 </div>
 
 <div class="price-box">
 
-<div class="price-option selected"
-onclick="selectOption(this,19.99,'Troy, MI area')">
-
+<div class="price-option selected" onclick="selectOption(this,19.99,'Troy, MI area')">
 <div class="left-opt">
 <div class="dot"><div class="dot-inner"></div></div>
 <div class="location">Troy, MI area</div>
 </div>
-
 <div class="price">$19.99</div>
 </div>
 
-<div class="price-option"
-onclick="selectOption(this,32,'Outside Troy, MI')">
-
+<div class="price-option" onclick="selectOption(this,32,'Outside Troy, MI')">
 <div class="left-opt">
 <div class="dot"><div class="dot-inner"></div></div>
 <div class="location">Outside Troy, MI</div>
 </div>
-
 <div class="price">$32.00</div>
 </div>
 
 </div>
 
-<button class="cart-btn" onclick="addToCart()">
-Add To Cart
-</button>
+<button class="cart-btn" onclick="placeOrder()">Place Order</button>
 
 </div>
 </div>
 
-<div class="bottom-description blue">
+<!-- MODAL -->
+<div id="orderModal" class="modal">
+<div class="modal-content">
 
-<h2>Blank Marshmallow Lamp</h2>
+<h2>Complete Your Order - Blank Marshmallow</h2>
 
-<p class="tagline">Soft Glow. Cozy Feel. Minimal Design.</p>
+<p>Select how you want to send your order:</p>
+
+<button class="platform-btn gmail" onclick="openGmail()">Open Gmail</button>
+<button class="platform-btn outlook" onclick="openOutlook()">Open Outlook</button>
+
+<br><br>
+<button onclick="closeModal()">Close</button>
 
 </div>
+</div>
 
-<footer class="footer">
-© 2026 Special3D. All rights reserved.
-</footer>
+<footer class="footer">© 2026 Special3D</footer>
 
 <script>
 
 let selectedPrice = 19.99;
 let selectedLocation = "Troy, MI area";
 
-/* STOCK SYSTEM */
+/* STOCK */
 async function loadStock(){
-    try{
-        const res = await fetch("../product/blank-stock.txt?cache=" + Date.now());
-        const text = await res.text();
-        const stock = parseInt(text.trim(),10);
+    const res = await fetch("../product/blank-stock.txt?cache=" + Date.now());
+    const text = await res.text();
+    const stock = parseInt(text.trim(),10);
 
-        const box = document.getElementById("stockBox");
-        box.innerText = "In stock: " + stock;
+    const box = document.getElementById("stockBox");
+    box.innerText = "In stock: " + stock;
 
-        if(stock <= 0){
-            document.querySelector(".cart-btn").disabled = true;
-            document.querySelector(".cart-btn").innerText = "Out of stock";
-        }
-        else if(stock <= 3){
-            box.style.color = "red";
-            box.innerText += " (low stock)";
-        }
-
-    } catch(e){
-        document.getElementById("stockBox").innerText = "Stock unavailable";
+    if(stock <= 0){
+        document.querySelector(".cart-btn").disabled = true;
+        document.querySelector(".cart-btn").innerText = "Out of stock";
     }
 }
 
 loadStock();
 
-/* CART */
-function addToCart(){
+/* ORDER */
+function placeOrder(){
+document.getElementById("orderModal").style.display="flex";
+}
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-cart.push({
-product: "Blank Marshmallow Lamp",
-price: selectedPrice,
-location: selectedLocation
-});
-
-localStorage.setItem("cart", JSON.stringify(cart));
-
-alert("Added to cart!");
+function closeModal(){
+document.getElementById("orderModal").style.display="none";
 }
 
 /* OPTIONS */
-function selectOption(el, price, location){
-
-document.querySelectorAll(".price-option")
-.forEach(x => x.classList.remove("selected"));
-
+function selectOption(el,price,location){
+document.querySelectorAll(".price-option").forEach(x=>x.classList.remove("selected"));
 el.classList.add("selected");
-
 selectedPrice = price;
 selectedLocation = location;
+}
+
+/* EMAIL */
+function openGmail(){
+let subject="Order - Blank Marshmallow";
+let body=`Product: Blank Marshmallow\nPrice: $${selectedPrice}\nLocation: ${selectedLocation}`;
+
+window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=special3dshop@outlook.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+}
+
+function openOutlook(){
+let subject="Order - Blank Marshmallow";
+let body=`Product: Blank Marshmallow\nPrice: $${selectedPrice}\nLocation: ${selectedLocation}`;
+
+window.open(`https://outlook.live.com/mail/0/deeplink/compose?to=special3dshop@outlook.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
 }
 
 </script>
