@@ -21,8 +21,6 @@ body{
     padding:50px;
 }
 
-/* LAYOUT */
-
 .product-container{
     max-width:1400px;
     margin:auto;
@@ -30,8 +28,6 @@ body{
     grid-template-columns:1fr 1fr;
     gap:60px;
 }
-
-/* LEFT */
 
 .main-image img{
     width:100%;
@@ -52,15 +48,13 @@ body{
     border-radius:12px;
 }
 
-/* RIGHT */
-
 .product-info h1{
     font-size:42px;
     margin-bottom:15px;
 }
 
 .rating{
-    margin-bottom:25px;
+    margin-bottom:10px;
     color:#f5b301;
     font-size:20px;
 }
@@ -69,6 +63,13 @@ body{
     color:#666;
     margin-left:10px;
     font-size:16px;
+}
+
+.stock{
+    margin-bottom:20px;
+    font-size:16px;
+    color:#222;
+    font-weight:bold;
 }
 
 .style-title{
@@ -101,7 +102,9 @@ body{
     margin-top:8px;
 }
 
-/* PRICE */
+.description{
+    margin-bottom:20px;
+}
 
 .price-box{
     border:1px solid #ddd;
@@ -159,8 +162,6 @@ body{
     font-weight:bold;
 }
 
-/* BUTTON */
-
 .cart-btn{
     width:100%;
     padding:18px;
@@ -172,7 +173,10 @@ body{
     cursor:pointer;
 }
 
-/* MODAL */
+.cart-btn:disabled{
+    background:#888;
+    cursor:not-allowed;
+}
 
 .modal{
     display:none;
@@ -195,14 +199,6 @@ body{
     text-align:center;
 }
 
-.email-row{
-    margin-top:15px;
-    font-size:14px;
-    color:#444;
-}
-
-/* BUTTONS */
-
 .platform-btn{
     width:100%;
     padding:14px;
@@ -216,11 +212,6 @@ body{
     gap:10px;
     font-size:16px;
     font-weight:bold;
-    transition:0.2s;
-}
-
-.platform-btn:hover{
-    transform:scale(1.03);
 }
 
 .gmail{
@@ -233,14 +224,10 @@ body{
     color:white;
 }
 
-/* ICONS */
-
 .icon{
     width:20px;
     height:20px;
 }
-
-/* FOOTER */
 
 .footer{
     text-align:center;
@@ -249,18 +236,9 @@ body{
     border-top:1px solid #eee;
 }
 
-/* MOBILE */
-
 @media(max-width:900px){
-
-body{
-    padding:20px;
-}
-
-.product-container{
-    grid-template-columns:1fr;
-}
-
+body{ padding:20px; }
+.product-container{ grid-template-columns:1fr; }
 }
 
 </style>
@@ -284,6 +262,8 @@ body{
 <h1>Face Marshmallow</h1>
 
 <div class="rating">★★★★★ <span>Handmade quality product</span></div>
+
+<div class="stock" id="stockBox">Loading stock...</div>
 
 <div class="style-title">Choose Your Style</div>
 
@@ -344,37 +324,12 @@ Place Order
 <div class="modal-content">
 
 <h2>Complete Your Order</h2>
-<p>Select how you want to send your order:</p>
 
-<button class="platform-btn gmail" onclick="openGmail()">
+<button class="platform-btn gmail" onclick="openGmail()">Open Gmail</button>
+<button class="platform-btn outlook" onclick="openOutlook()">Open Outlook</button>
 
-<!-- Gmail icon -->
-<svg class="icon" viewBox="0 0 24 24">
-<path fill="#EA4335" d="M12 12.713L0 4v16h24V4z"/>
-<path fill="#FBBC05" d="M24 4l-12 8L0 4z"/>
-<path fill="#34A853" d="M0 20l8-6 4 3 4-3 8 6z"/>
-</svg>
-
-Open Gmail
-
-</button>
-
-<button class="platform-btn outlook" onclick="openOutlook()">
-
-<!-- Outlook icon -->
-<svg class="icon" viewBox="0 0 24 24">
-<path fill="white" d="M14 3h7v7h-7z"/>
-<path fill="white" d="M3 3h9v9H3z"/>
-<path fill="white" d="M3 14h9v7H3z"/>
-<path fill="white" d="M14 14h7v7h-7z"/>
-</svg>
-
-Open Outlook
-
-</button>
-
-<div class="email-row">
-Fallback email: <b>special3dshop@outlook.com</b>
+<div style="margin-top:10px;font-size:14px;">
+Fallback: special3dshop@outlook.com
 </div>
 
 <br>
@@ -393,7 +348,6 @@ let selectedPrice = 19.99;
 let selectedLocation = "Troy, MI area";
 
 function selectOption(el, price, location){
-
 document.querySelectorAll(".price-option")
 .forEach(x=>x.classList.remove("selected"));
 
@@ -411,9 +365,34 @@ function closeModal(){
 document.getElementById("orderModal").style.display="none";
 }
 
-/* GMAIL */
-function openGmail(){
+/* STOCK LOAD */
+async function loadStock(){
+    try{
+        const res = await fetch("../product/face-stock.txt?cache=" + Date.now());
+        const text = await res.text();
 
+        const stock = parseInt(text.trim(),10);
+
+        const box = document.getElementById("stockBox");
+        box.innerText = `In stock: ${stock}`;
+
+        if(stock <= 0){
+            document.querySelector(".cart-btn").disabled = true;
+            document.querySelector(".cart-btn").innerText = "Out of stock";
+        }
+        else if(stock <= 3){
+            box.style.color = "red";
+            box.innerText += " (low stock)";
+        }
+
+    } catch(e){
+        document.getElementById("stockBox").innerText = "Stock unavailable";
+    }
+}
+
+loadStock();
+
+function openGmail(){
 let subject = "Order - Face Marshmallow Lamp";
 
 let body =
@@ -427,9 +406,7 @@ let url =
 window.open(url, "_blank");
 }
 
-/* OUTLOOK */
 function openOutlook(){
-
 let subject = "Order - Face Marshmallow Lamp";
 
 let body =
