@@ -288,15 +288,11 @@ body{
 
 <div class="main-image">
 
-<img id="mainImg"
-src="../blue background marshmallows.png">
+<img src="../blue background marshmallows.png">
 
 <div class="extra-images">
-
 <img src="../yellow background marshmallows.png">
-
 <img src="../green background marshmallows.png">
-
 </div>
 
 </div>
@@ -310,9 +306,7 @@ src="../blue background marshmallows.png">
 <span>Handmade quality product</span>
 </div>
 
-<div class="style-title">
-Choose Your Style
-</div>
+<div class="style-title">Choose Your Style</div>
 
 <div class="style-grid">
 
@@ -334,11 +328,8 @@ Choose Your Style
 </div>
 
 <div class="description">
-
 Custom 3D printed marshmallow-style product.
-Soft glow aesthetic lamp design,
-perfect for cozy rooms and desks.
-
+Soft glow aesthetic lamp design, perfect for cozy rooms and desks.
 </div>
 
 <div class="price-box">
@@ -381,17 +372,17 @@ Place Order
   <div class="modal-content">
     <h2>Place Order</h2>
 
-    <p>Send your order to:</p>
-
-    <input type="text" readonly value="special3dshop@outlook.com">
+    <p>We will open Gmail with your order ready.</p>
 
     <button onclick="copyEmail()">Copy Email</button>
 
-    <hr>
+    <p style="margin-top:15px;">
+      special3dshop@outlook.com
+    </p>
 
-    <p>Or open email app with order prefilled:</p>
+    <br>
 
-    <button onclick="openEmail()">Open Email</button>
+    <button onclick="openEmail()">Open Gmail</button>
 
     <br><br>
 
@@ -402,7 +393,6 @@ Place Order
 <div class="bottom-description blue">
 
 <h2>Face Marshmallow Lamp</h2>
-
 <p class="tagline">Soft Glow. Cozy Feel. Minimal Design.</p>
 
 <div class="info-box">
@@ -436,26 +426,26 @@ Place Order
 
 <script>
 
-let selectedPrice=19.99;
-let selectedLocation="Troy, MI area";
+let selectedPrice = 19.99;
+let selectedLocation = "Troy, MI area";
 
-function selectOption(el,price,location){
+function selectOption(el, price, location){
 
 document.querySelectorAll(".price-option")
 .forEach(x=>x.classList.remove("selected"));
 
 el.classList.add("selected");
 
-selectedPrice=price;
-selectedLocation=location;
+selectedPrice = price;
+selectedLocation = location;
 }
 
 function placeOrder(){
-    document.getElementById("orderModal").style.display="flex";
+    document.getElementById("orderModal").style.display = "flex";
 }
 
 function closeModal(){
-    document.getElementById("orderModal").style.display="none";
+    document.getElementById("orderModal").style.display = "none";
 }
 
 function copyEmail(){
@@ -465,18 +455,19 @@ function copyEmail(){
 
 function openEmail(){
 
-let subject="Order - Face Marshmallow Lamp";
+let subject = "Order - Face Marshmallow Lamp";
 
-let body=
+let body =
 `Product: Face Marshmallow Lamp
 Price: $${selectedPrice}
 Location: ${selectedLocation}
 
 Please confirm my order.`;
 
-window.location.href=
-`mailto:special3dshop@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+let gmailUrl =
+`https://mail.google.com/mail/?view=cm&fs=1&to=special3dshop@outlook.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
+window.open(gmailUrl, "_blank");
 }
 
 </script>
