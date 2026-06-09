@@ -172,71 +172,6 @@ body{
     cursor:pointer;
 }
 
-/* DESCRIPTION */
-
-.description{
-    margin-bottom:25px;
-    color:#555;
-    line-height:1.6;
-}
-
-/* BOTTOM */
-
-.bottom-description{
-    width:100vw;
-    margin-left:calc(-50vw + 50%);
-    margin-top:80px;
-    padding:60px 20px;
-    color:white;
-}
-
-.bottom-description.blue{
-    background:#0b3d91;
-}
-
-.bottom-description h2{
-    text-align:center;
-    font-size:36px;
-    margin-bottom:10px;
-}
-
-.tagline{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.info-box{
-    max-width:900px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.info-block{
-    background:rgba(255,255,255,0.08);
-    padding:20px;
-    border-radius:14px;
-}
-
-.info-block h3{
-    margin-bottom:8px;
-}
-
-.info-block p{
-    color:#dbe9ff;
-    line-height:1.6;
-}
-
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    padding:30px;
-    color:#666;
-    border-top:1px solid #eee;
-}
-
 /* MODAL */
 
 .modal{
@@ -254,15 +189,64 @@ body{
 .modal-content{
     background:white;
     padding:25px;
-    border-radius:12px;
+    border-radius:14px;
     width:90%;
-    max-width:500px;
+    max-width:520px;
+    text-align:center;
 }
 
-.modal-content input{
+.email-row{
+    margin-top:15px;
+    font-size:14px;
+    color:#444;
+}
+
+/* BUTTONS */
+
+.platform-btn{
     width:100%;
-    padding:10px;
+    padding:14px;
     margin:10px 0;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:16px;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.platform-btn:hover{
+    transform:scale(1.03);
+}
+
+.gmail{
+    background:#fff;
+    border:1px solid #ddd;
+}
+
+.outlook{
+    background:#0078D4;
+    color:white;
+}
+
+/* ICONS */
+
+.icon{
+    width:20px;
+    height:20px;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    border-top:1px solid #eee;
 }
 
 /* MOBILE */
@@ -287,24 +271,19 @@ body{
 <div class="product-container">
 
 <div class="main-image">
-
 <img src="../blue background marshmallows.png">
 
 <div class="extra-images">
 <img src="../yellow background marshmallows.png">
 <img src="../green background marshmallows.png">
 </div>
-
 </div>
 
 <div class="product-info">
 
 <h1>Face Marshmallow</h1>
 
-<div class="rating">
-★★★★★
-<span>Handmade quality product</span>
-</div>
+<div class="rating">★★★★★ <span>Handmade quality product</span></div>
 
 <div class="style-title">Choose Your Style</div>
 
@@ -328,34 +307,27 @@ body{
 </div>
 
 <div class="description">
-Custom 3D printed marshmallow-style product.
-Soft glow aesthetic lamp design, perfect for cozy rooms and desks.
+Custom 3D printed marshmallow-style lamp for cozy ambient lighting.
 </div>
 
 <div class="price-box">
 
 <div class="price-option selected"
 onclick="selectOption(this,19.99,'Troy, MI area')">
-
 <div class="left-opt">
 <div class="dot"><div class="dot-inner"></div></div>
 <div class="location">Troy, MI area</div>
 </div>
-
 <div class="price">$19.99</div>
-
 </div>
 
 <div class="price-option"
 onclick="selectOption(this,32,'Outside Troy, MI')">
-
 <div class="left-opt">
 <div class="dot"><div class="dot-inner"></div></div>
 <div class="location">Outside Troy, MI</div>
 </div>
-
 <div class="price">$32.00</div>
-
 </div>
 
 </div>
@@ -369,53 +341,44 @@ Place Order
 
 <!-- MODAL -->
 <div id="orderModal" class="modal">
-  <div class="modal-content">
-    <h2>Place Order</h2>
+<div class="modal-content">
 
-    <p>We will open Gmail with your order ready.</p>
+<h2>Complete Your Order</h2>
+<p>Select how you want to send your order:</p>
 
-    <button onclick="copyEmail()">Copy Email</button>
+<button class="platform-btn gmail" onclick="openGmail()">
 
-    <p style="margin-top:15px;">
-      special3dshop@outlook.com
-    </p>
+<!-- Gmail icon -->
+<svg class="icon" viewBox="0 0 24 24">
+<path fill="#EA4335" d="M12 12.713L0 4v16h24V4z"/>
+<path fill="#FBBC05" d="M24 4l-12 8L0 4z"/>
+<path fill="#34A853" d="M0 20l8-6 4 3 4-3 8 6z"/>
+</svg>
 
-    <br>
+Open Gmail
 
-    <button onclick="openEmail()">Open Gmail</button>
+</button>
 
-    <br><br>
+<button class="platform-btn outlook" onclick="openOutlook()">
 
-    <button onclick="closeModal()">Close</button>
-  </div>
+<!-- Outlook icon -->
+<svg class="icon" viewBox="0 0 24 24">
+<path fill="white" d="M14 3h7v7h-7z"/>
+<path fill="white" d="M3 3h9v9H3z"/>
+<path fill="white" d="M3 14h9v7H3z"/>
+<path fill="white" d="M14 14h7v7h-7z"/>
+</svg>
+
+Open Outlook
+
+</button>
+
+<div class="email-row">
+Fallback email: <b>special3dshop@outlook.com</b>
 </div>
 
-<div class="bottom-description blue">
-
-<h2>Face Marshmallow Lamp</h2>
-<p class="tagline">Soft Glow. Cozy Feel. Minimal Design.</p>
-
-<div class="info-box">
-
-<div class="info-block">
-<h3>About the Product</h3>
-<p>A marshmallow-inspired desk lamp designed for ambient lighting.</p>
-</div>
-
-<div class="info-block">
-<h3>Lighting Experience</h3>
-<p>Soft diffused glow.</p>
-</div>
-
-<div class="info-block">
-<h3>Build & Efficiency</h3>
-<p>Low power usage.</p>
-</div>
-
-<div class="info-block">
-<h3>Shipping</h3>
-<p>Up to 5 business days.</p>
-</div>
+<br>
+<button onclick="closeModal()">Close</button>
 
 </div>
 </div>
@@ -441,33 +404,43 @@ selectedLocation = location;
 }
 
 function placeOrder(){
-    document.getElementById("orderModal").style.display = "flex";
+document.getElementById("orderModal").style.display="flex";
 }
 
 function closeModal(){
-    document.getElementById("orderModal").style.display = "none";
+document.getElementById("orderModal").style.display="none";
 }
 
-function copyEmail(){
-    navigator.clipboard.writeText("special3dshop@outlook.com");
-    alert("Email copied");
-}
-
-function openEmail(){
+/* GMAIL */
+function openGmail(){
 
 let subject = "Order - Face Marshmallow Lamp";
 
 let body =
 `Product: Face Marshmallow Lamp
 Price: $${selectedPrice}
-Location: ${selectedLocation}
+Location: ${selectedLocation}`;
 
-Please confirm my order.`;
-
-let gmailUrl =
+let url =
 `https://mail.google.com/mail/?view=cm&fs=1&to=special3dshop@outlook.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-window.open(gmailUrl, "_blank");
+window.open(url, "_blank");
+}
+
+/* OUTLOOK */
+function openOutlook(){
+
+let subject = "Order - Face Marshmallow Lamp";
+
+let body =
+`Product: Face Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}`;
+
+let url =
+`https://outlook.live.com/mail/0/deeplink/compose?to=special3dshop@outlook.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+window.open(url, "_blank");
 }
 
 </script>
