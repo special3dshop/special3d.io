@@ -7,12 +7,232 @@
 
 <link rel="icon" type="image/png" href="../special 3d logo.png">
 
-<!-- (same CSS as your original page, unchanged) -->
-
 <style>
-/* KEEP YOUR ORIGINAL CSS HERE EXACTLY */
-</style>
 
+/* SAME CSS AS YOUR FACE PAGE */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fff;
+    padding:50px;
+}
+
+.product-container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+}
+
+.main-image img{
+    width:100%;
+    border-radius:20px;
+}
+
+.extra-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+}
+
+.extra-images img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.product-info h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.rating{
+    margin-bottom:10px;
+    color:#f5b301;
+    font-size:20px;
+}
+
+.rating span{
+    color:#666;
+    margin-left:10px;
+    font-size:16px;
+}
+
+.stock{
+    margin-bottom:20px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.style-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.style-grid{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.style-card{
+    text-decoration:none;
+    color:black;
+}
+
+.style-card img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.style-card p{
+    text-align:center;
+    margin-top:8px;
+}
+
+.description{
+    margin-bottom:20px;
+}
+
+.price-box{
+    border:1px solid #ddd;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.price-option{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    cursor:pointer;
+}
+
+.price-option:first-child{
+    border-bottom:1px solid #eee;
+}
+
+.left-opt{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    border:2px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.dot-inner{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:black;
+    display:none;
+}
+
+.price-option.selected .dot-inner{
+    display:block;
+}
+
+.location{
+    font-weight:bold;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.cart-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    background:black;
+    color:white;
+    font-size:18px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.cart-btn:disabled{
+    background:#888;
+    cursor:not-allowed;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    width:90%;
+    max-width:520px;
+    text-align:center;
+}
+
+.platform-btn{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.gmail{
+    background:#fff;
+    border:1px solid #ddd;
+}
+
+.outlook{
+    background:#0078D4;
+    color:white;
+}
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    border-top:1px solid #eee;
+}
+
+@media(max-width:900px){
+body{padding:20px;}
+.product-container{grid-template-columns:1fr;}
+}
+
+</style>
 </head>
 
 <body>
@@ -34,7 +254,7 @@
 
 <div class="rating">★★★★★ <span>Handmade quality product</span></div>
 
-<div id="stockBox" style="margin-bottom:15px;font-weight:bold;">Loading stock...</div>
+<div class="stock" id="stockBox">Loading stock...</div>
 
 <div class="style-title">Choose Your Style</div>
 
@@ -58,13 +278,14 @@
 </div>
 
 <div class="description">
-Custom 3D printed marshmallow-style product.
-Soft glow aesthetic lamp design.
+Custom 3D printed marshmallow-style lamp.
+Soft glow aesthetic design.
 </div>
 
 <div class="price-box">
 
-<div class="price-option selected" onclick="selectOption(this,19.99,'Troy, MI area')">
+<div class="price-option selected"
+onclick="selectOption(this,19.99,'Troy, MI area')">
 <div class="left-opt">
 <div class="dot"><div class="dot-inner"></div></div>
 <div class="location">Troy, MI area</div>
@@ -72,7 +293,8 @@ Soft glow aesthetic lamp design.
 <div class="price">$19.99</div>
 </div>
 
-<div class="price-option" onclick="selectOption(this,32,'Outside Troy, MI')">
+<div class="price-option"
+onclick="selectOption(this,32,'Outside Troy, MI')">
 <div class="left-opt">
 <div class="dot"><div class="dot-inner"></div></div>
 <div class="location">Outside Troy, MI</div>
@@ -82,7 +304,9 @@ Soft glow aesthetic lamp design.
 
 </div>
 
-<button class="cart-btn" onclick="placeOrder()">Place Order</button>
+<button class="cart-btn" onclick="placeOrder()">
+Place Order
+</button>
 
 </div>
 </div>
@@ -93,18 +317,22 @@ Soft glow aesthetic lamp design.
 
 <h2>Complete Your Order - Custom Marshmallow</h2>
 
-<p>Select how you want to send your order:</p>
+<p>
+IMPORTANT: If this is a custom lamp, please attach your design image in the email before sending.
+</p>
 
 <button class="platform-btn gmail" onclick="openGmail()">Open Gmail</button>
 <button class="platform-btn outlook" onclick="openOutlook()">Open Outlook</button>
 
-<br><br>
+<br>
 <button onclick="closeModal()">Close</button>
 
 </div>
 </div>
 
-<footer class="footer">© 2026 Special3D</footer>
+<footer class="footer">
+© 2026 Special3D
+</footer>
 
 <script>
 
@@ -128,7 +356,7 @@ async function loadStock(){
 
 loadStock();
 
-/* ORDER */
+/* MODAL */
 function placeOrder(){
 document.getElementById("orderModal").style.display="flex";
 }
@@ -147,15 +375,31 @@ selectedLocation = location;
 
 /* EMAIL */
 function openGmail(){
-let subject="Order - Custom Marshmallow";
-let body=`Product: Custom Marshmallow\nPrice: $${selectedPrice}\nLocation: ${selectedLocation}`;
+
+let subject = "Order - Custom Marshmallow Lamp";
+
+let body =
+`Product: Custom Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}
+
+IMPORTANT:
+Attach your custom image for the lamp before sending this email.`;
 
 window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=special3dshop@outlook.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
 }
 
 function openOutlook(){
-let subject="Order - Custom Marshmallow";
-let body=`Product: Custom Marshmallow\nPrice: $${selectedPrice}\nLocation: ${selectedLocation}`;
+
+let subject = "Order - Custom Marshmallow Lamp";
+
+let body =
+`Product: Custom Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}
+
+IMPORTANT:
+Attach your custom image for the lamp before sending this email.`;
 
 window.open(`https://outlook.live.com/mail/0/deeplink/compose?to=special3dshop@outlook.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
 }
