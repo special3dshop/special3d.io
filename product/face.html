@@ -195,6 +195,12 @@ body{
     text-align:center;
 }
 
+.email-row{
+    margin-top:15px;
+    font-size:14px;
+    color:#444;
+}
+
 /* BUTTONS */
 
 .platform-btn{
@@ -226,6 +232,8 @@ body{
     background:#0078D4;
     color:white;
 }
+
+/* ICONS */
 
 .icon{
     width:20px;
@@ -336,11 +344,11 @@ Place Order
 <div class="modal-content">
 
 <h2>Complete Your Order</h2>
-<p>Select how you want to send your request:</p>
+<p>Select how you want to send your order:</p>
 
-<!-- GMAIL -->
 <button class="platform-btn gmail" onclick="openGmail()">
 
+<!-- Gmail icon -->
 <svg class="icon" viewBox="0 0 24 24">
 <path fill="#EA4335" d="M12 12.713L0 4v16h24V4z"/>
 <path fill="#FBBC05" d="M24 4l-12 8L0 4z"/>
@@ -351,9 +359,9 @@ Open Gmail
 
 </button>
 
-<!-- OUTLOOK -->
 <button class="platform-btn outlook" onclick="openOutlook()">
 
+<!-- Outlook icon -->
 <svg class="icon" viewBox="0 0 24 24">
 <path fill="white" d="M14 3h7v7h-7z"/>
 <path fill="white" d="M3 3h9v9H3z"/>
@@ -364,6 +372,13 @@ Open Gmail
 Open Outlook
 
 </button>
+
+<div class="email-row">
+Fallback email: <b>special3dshop@outlook.com</b>
+</div>
+
+<br>
+<button onclick="closeModal()">Close</button>
 
 </div>
 </div>
@@ -389,38 +404,11 @@ selectedLocation = location;
 }
 
 function placeOrder(){
-document.getElementById("orderModal").style.display = "flex";
+document.getElementById("orderModal").style.display="flex";
 }
 
-/* EMAIL TEMPLATE */
-function buildEmailBody(){
-
-return `ORDER REQUEST
-
-------------------------
-PRODUCT INFO
-------------------------
-Product: Face Marshmallow Lamp
-Price: $${selectedPrice}
-Location: ${selectedLocation}
-
-------------------------
-CUSTOMER INFO (EDIT)
-------------------------
-Full Name: 
-Email: 
-Shipping Address: 
-
-------------------------
-ADDITIONAL DETAILS
-------------------------
-Questions / Notes:
-- 
-
-------------------------
-CONFIRMATION
-------------------------
-Please confirm availability before shipping.`;
+function closeModal(){
+document.getElementById("orderModal").style.display="none";
 }
 
 /* GMAIL */
@@ -428,7 +416,10 @@ function openGmail(){
 
 let subject = "Order - Face Marshmallow Lamp";
 
-let body = buildEmailBody();
+let body =
+`Product: Face Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}`;
 
 let url =
 `https://mail.google.com/mail/?view=cm&fs=1&to=special3dshop@outlook.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -441,7 +432,10 @@ function openOutlook(){
 
 let subject = "Order - Face Marshmallow Lamp";
 
-let body = buildEmailBody();
+let body =
+`Product: Face Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}`;
 
 let url =
 `https://outlook.live.com/mail/0/deeplink/compose?to=special3dshop@outlook.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
