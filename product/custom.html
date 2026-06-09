@@ -21,8 +21,6 @@ body{
     padding:50px;
 }
 
-/* LAYOUT */
-
 .product-container{
     max-width:1400px;
     margin:auto;
@@ -30,8 +28,6 @@ body{
     grid-template-columns:1fr 1fr;
     gap:60px;
 }
-
-/* LEFT */
 
 .main-image img{
     width:100%;
@@ -51,8 +47,6 @@ body{
     object-fit:cover;
     border-radius:12px;
 }
-
-/* RIGHT */
 
 .product-info h1{
     font-size:42px;
@@ -100,8 +94,6 @@ body{
     text-align:center;
     margin-top:8px;
 }
-
-/* PRICE */
 
 .price-box{
     border:1px solid #ddd;
@@ -159,8 +151,6 @@ body{
     font-weight:bold;
 }
 
-/* BUTTON */
-
 .cart-btn{
     width:100%;
     padding:18px;
@@ -172,15 +162,16 @@ body{
     cursor:pointer;
 }
 
-/* DESCRIPTION */
+.cart-btn:disabled{
+    background:#888;
+    cursor:not-allowed;
+}
 
 .description{
     margin-bottom:25px;
     color:#555;
     line-height:1.6;
 }
-
-/* BOTTOM */
 
 .bottom-description{
     width:100vw;
@@ -194,42 +185,6 @@ body{
     background:#0b3d91;
 }
 
-.bottom-description h2{
-    text-align:center;
-    font-size:36px;
-    margin-bottom:10px;
-}
-
-.tagline{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.info-box{
-    max-width:900px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.info-block{
-    background:rgba(255,255,255,0.08);
-    padding:20px;
-    border-radius:14px;
-}
-
-.info-block h3{
-    margin-bottom:8px;
-}
-
-.info-block p{
-    color:#dbe9ff;
-    line-height:1.6;
-}
-
-/* FOOTER */
-
 .footer{
     text-align:center;
     padding:30px;
@@ -237,18 +192,9 @@ body{
     border-top:1px solid #eee;
 }
 
-/* MOBILE */
-
 @media(max-width:900px){
-
-body{
-    padding:20px;
-}
-
-.product-container{
-    grid-template-columns:1fr;
-}
-
+body{padding:20px;}
+.product-container{grid-template-columns:1fr;}
 }
 
 </style>
@@ -259,18 +205,12 @@ body{
 <div class="product-container">
 
 <div class="main-image">
-
-<img id="mainImg"
-src="../yellow background custom marshmallows.png">
+<img src="../yellow background custom marshmallows.png">
 
 <div class="extra-images">
-
 <img src="../green background custom marshmallows.png">
-
 <img src="../blue background custom marshmallows.png">
-
 </div>
-
 </div>
 
 <div class="product-info">
@@ -278,54 +218,37 @@ src="../yellow background custom marshmallows.png">
 <h1>Custom Marshmallow</h1>
 
 <div class="rating">
-★★★★★
-<span>Handmade quality product</span>
+★★★★★ <span>Handmade quality product</span>
 </div>
 
-<div class="style-title">
-Choose Your Style
+<div id="stockBox" style="margin-bottom:15px;font-weight:bold;">
+Loading stock...
 </div>
+
+<div class="style-title">Choose Your Style</div>
 
 <div class="style-grid">
 
-<a href="/product/face.html"
-class="style-card">
-
+<a href="/product/face.html" class="style-card">
 <img src="../blue background marshmallows.png">
-
 <p>Face</p>
-
 </a>
 
-
-<a href="/product/blank.html"
-class="style-card">
-
-<!-- UPDATED IMAGE -->
+<a href="/product/blank.html" class="style-card">
 <img src="../green background marhsmallow no face.png">
-
 <p>Blank</p>
-
 </a>
 
-
-<a href="/product/custom.html"
-class="style-card">
-
+<a href="/product/custom.html" class="style-card">
 <img src="../yellow background custom marshmallows.png">
-
 <p>Custom</p>
-
 </a>
 
 </div>
 
 <div class="description">
-
 Custom 3D printed marshmallow-style product.
-Soft glow aesthetic lamp design,
-perfect for cozy rooms and desks.
-
+Soft glow aesthetic lamp design, perfect for cozy rooms.
 </div>
 
 <div class="price-box">
@@ -334,239 +257,135 @@ perfect for cozy rooms and desks.
 onclick="selectOption(this,19.99,'Troy, MI area')">
 
 <div class="left-opt">
-
-<div class="dot">
-
-<div class="dot-inner"></div>
-
+<div class="dot"><div class="dot-inner"></div></div>
+<div class="location">Troy, MI area</div>
 </div>
 
-<div class="location">
-
-Troy, MI area
-
-</div>
-
-</div>
-
-<div class="price">
-
-$19.99
-
-</div>
-
+<div class="price">$19.99</div>
 </div>
 
 <div class="price-option"
 onclick="selectOption(this,32,'Outside Troy, MI')">
 
 <div class="left-opt">
-
-<div class="dot">
-
-<div class="dot-inner"></div>
-
+<div class="dot"><div class="dot-inner"></div></div>
+<div class="location">Outside Troy, MI</div>
 </div>
 
-<div class="location">
-
-Outside Troy, MI
-
+<div class="price">$32.00</div>
 </div>
 
 </div>
 
-<div class="price">
-
-$32.00
-
-</div>
-
-</div>
-
-</div>
-
-<button
-class="cart-btn"
-onclick="addToCart()">
-
-Add To Cart
-
+<button class="cart-btn" onclick="placeOrder()">
+Place Order
 </button>
 
 </div>
-
 </div>
 
+<!-- MODAL -->
+<div id="orderModal" class="modal">
+<div class="modal-content">
 
-<div class="bottom-description blue">
+<h2>Complete Your Order - Custom Marshmallow</h2>
 
-<h2>
-Custom Marshmallow Lamp
-</h2>
+<p>Select how you want to send your order:</p>
 
-<p class="tagline">
+<button class="platform-btn gmail" onclick="openGmail()">Open Gmail</button>
+<button class="platform-btn outlook" onclick="openOutlook()">Open Outlook</button>
 
-Soft Glow. Cozy Feel.
-Minimal Design.
-
-</p>
-
-<div class="info-box">
-
-<div class="info-block">
-
-<h3>
-
-About the Product
-
-</h3>
-
-<p>
-
-A marshmallow-inspired
-desk lamp designed
-for ambient lighting.
-
-</p>
+<br><br>
+<button onclick="closeModal()">Close</button>
 
 </div>
-
-<div class="info-block">
-
-<h3>
-
-Lighting Experience
-
-</h3>
-
-<p>
-
-Soft diffused glow.
-
-</p>
-
-</div>
-
-<div class="info-block">
-
-<h3>
-
-Build & Efficiency
-
-</h3>
-
-<p>
-
-Low power usage.
-
-</p>
-
-</div>
-
-<div class="info-block">
-
-<h3>
-
-Shipping
-
-</h3>
-
-<p>
-
-Up to 5 business days.
-
-</p>
-
-</div>
-
-</div>
-
 </div>
 
 <footer class="footer">
-
-© 2026 Special3D.
-All rights reserved.
-
+© 2026 Special3D. All rights reserved.
 </footer>
 
 <script>
 
-let selectedPrice=19.99;
+let selectedPrice = 19.99;
+let selectedLocation = "Troy, MI area";
 
-let selectedLocation=
-"Troy, MI area";
+/* STOCK */
+async function loadStock(){
+    try{
+        const res = await fetch("../product/custom-stock.txt?cache=" + Date.now());
+        const text = await res.text();
+        const stock = parseInt(text.trim(),10);
 
-function selectOption(
-el,
-price,
-location
-){
+        const box = document.getElementById("stockBox");
+        box.innerText = "In stock: " + stock;
 
-document
-.querySelectorAll(
-".price-option"
-)
+        if(stock <= 0){
+            document.querySelector(".cart-btn").disabled = true;
+            document.querySelector(".cart-btn").innerText = "Out of stock";
+        }
+        else if(stock <= 3){
+            box.style.color = "red";
+            box.innerText += " (low stock)";
+        }
 
-.forEach(
-x=>
-x.classList
-.remove(
-"selected"
-)
-);
-
-el.classList
-.add(
-"selected"
-);
-
-selectedPrice=
-price;
-
-selectedLocation=
-location;
-
+    } catch(e){
+        document.getElementById("stockBox").innerText = "Stock unavailable";
+    }
 }
 
-function addToCart(){
+loadStock();
 
-let cart=
-JSON.parse(
-localStorage
-.getItem(
-"cart"
-)
-)
-||
-[];
+/* ORDER MODAL */
+function placeOrder(){
+document.getElementById("orderModal").style.display="flex";
+}
 
-cart.push({
+function closeModal(){
+document.getElementById("orderModal").style.display="none";
+}
 
-product:
-"Face Marshmallow Lamp",
+/* OPTIONS */
+function selectOption(el,price,location){
+document.querySelectorAll(".price-option").forEach(x=>x.classList.remove("selected"));
+el.classList.add("selected");
+selectedPrice = price;
+selectedLocation = location;
+}
 
-price:
-selectedPrice,
+/* EMAIL */
+function openGmail(){
 
-location:
-selectedLocation
+let subject="Order - Custom Marshmallow Lamp";
 
-});
+let body=
+`Product: Custom Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}
 
-localStorage
-.setItem(
-"cart",
-JSON.stringify(
-cart
-)
-);
+IMPORTANT:
+Please attach your custom image for the lamp design before sending this email.`;
 
-alert(
-"Added to cart!"
-);
+window.open(
+`https://mail.google.com/mail/?view=cm&fs=1&to=special3dshop@outlook.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+,"_blank");
+}
 
+function openOutlook(){
+
+let subject="Order - Custom Marshmallow Lamp";
+
+let body=
+`Product: Custom Marshmallow Lamp
+Price: $${selectedPrice}
+Location: ${selectedLocation}
+
+IMPORTANT:
+Please attach your custom image for the lamp design before sending this email.`;
+
+window.open(
+`https://outlook.live.com/mail/0/deeplink/compose?to=special3dshop@outlook.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+,"_blank");
 }
 
 </script>
